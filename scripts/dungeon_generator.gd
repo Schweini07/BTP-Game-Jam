@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 var maze = []
 var move_map = {
@@ -12,16 +12,22 @@ var move_map = {
 	7: Vector2(1,1),
 }
 var def_maze
+var size = 100
+var room_frequency = 14
 
 class Room:
 	var pos
 	var size
 	var maze
+	var max_exits = 4
+	var max_size = 10
+	var min_size = 5
+	var max_offset = 4
 	
 	func generate():
-		size = Vector2(randi()%10+5, randi()%10+5)
-		pos.x += randi()%4
-		pos.y += randi()%4
+		size = Vector2(randi()%max_size+min_size, randi()%max_size+min_size)
+		pos.x += randi()%max_offset
+		pos.y += randi()%max_offset
 		if pos.x+size.x > len(maze)-1 or pos.y+size.y > len(maze[0])-1:
 			self.size = Vector2(0,0)
 	
@@ -30,25 +36,25 @@ class Room:
 		for i in range(size.x):
 			for j in range(size.y):
 				if i == 0:
-					if maze[pos.x+i-1][pos.y+j] != "visited" or exits[0] > 2:
+					if maze[pos.x+i-1][pos.y+j] != "visited" or exits[0] > max_exits:
 						maze[pos.x+i][pos.y+j] = "wall"
 					else:
 						maze[pos.x+i][pos.y+j] = "visited"
 						exits[0] += 1
 				elif j == 0: 
-					if maze[pos.x+i][pos.y+j-1] != "visited" or exits[1] > 2:
+					if maze[pos.x+i][pos.y+j-1] != "visited" or exits[1] > max_exits:
 						maze[pos.x+i][pos.y+j] = "wall"
 					else:
 						maze[pos.x+i][pos.y+j] = "visited"
 						exits[1] += 1
 				elif i == size.x-1:
-					if maze[pos.x+i+1][pos.y+j] != "visited" or exits[2] > 2:
+					if maze[pos.x+i+1][pos.y+j] != "visited" or exits[2] > max_exits:
 						maze[pos.x+i][pos.y+j] = "wall"
 					else:
 						maze[pos.x+i][pos.y+j] = "visited"
 						exits[2] += 1
 				elif j == size.y-1:
-					if maze[pos.x+i][pos.y+j+1] != "visited" or exits[3] > 2:
+					if maze[pos.x+i][pos.y+j+1] != "visited" or exits[3] > max_exits:
 						maze[pos.x+i][pos.y+j] = "wall"
 					else:
 						maze[pos.x+i][pos.y+j] = "visited"
@@ -58,15 +64,15 @@ class Room:
 					
 		return maze
 
-func _ready():
+func generate():
 	randomize()
 	
-	for i in range(101):
+	for i in range(size+1):
 		maze.append([])
-		for j in range(101):
+		for j in range(size+1):
 			if i == 0 or j == 0:
 				maze[i].append("visited")
-			elif i == 100 or j == 100:
+			elif i == size or j == size:
 				maze[i].append("visited")
 			else:
 				maze[i].append("wall")
@@ -75,10 +81,10 @@ func _ready():
 	
 	var rooms = []
 	var room
-	for i in range(len(maze)/14):
-		for j in range(len(maze[i])/14):
+	for i in range(len(maze)/room_frequency):
+		for j in range(len(maze[i])/room_frequency):
 			room = Room.new()
-			room.pos = Vector2(i, j)*14
+			room.pos = Vector2(i, j)*room_frequency
 			room.maze = maze
 			room.generate()
 			maze = room.add_to_maze()
