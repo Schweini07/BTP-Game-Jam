@@ -1,0 +1,31 @@
+[gd_scene format=2]
+
+[node name="TempDebug" type="CanvasLayer"]
+
+[node name="Velocity" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -68.9999
+margin_top = 10.0
+margin_right = -9.99994
+margin_bottom = 24.0
+grow_horizontal = 0
+text = "Velocity: "
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -68.9999
+margin_top = 40.0
+margin_right = -10.0
+margin_bottom = 54.0
+grow_horizontal = 0
+text = "Speed: "
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
