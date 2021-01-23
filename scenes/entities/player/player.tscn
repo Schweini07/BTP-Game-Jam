@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/debug/ui_debug.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 24, 24 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
