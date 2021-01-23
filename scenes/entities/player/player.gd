@@ -19,7 +19,6 @@ func _pre_apply_movement(delta: float) -> void:
 		_apply_friction(DEACC * delta)
 	else:
 		_accelerate(input.normalized() * ACC * delta)
-	_apply_movement()
 
 
 func _get_input() -> Vector2:
