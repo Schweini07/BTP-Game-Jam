@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/graphics/UI/upgrade.png" type="Texture" id=1]
-[ext_resource path="res://scenes/UI/UpgradeButton.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/ui/upgrade.png" type="Texture" id=1]
+[ext_resource path="res://scenes/ui/upgrade_button.gd" type="Script" id=2]
 
 [node name="UpgradeButton" type="TextureButton"]
 margin_right = 128.0
