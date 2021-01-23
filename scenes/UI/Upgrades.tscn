@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/UI/UpgradeButton.tscn" type="PackedScene" id=1]
+
+[node name="Upgrades" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.772549, 0.698039, 0.552941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 974.0
+margin_bottom = 550.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpgradeButton" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_right = 305.0
+margin_bottom = 164.0
+
+[node name="UpgradeButton2" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 309.0
+margin_right = 614.0
+margin_bottom = 164.0
+
+[node name="UpgradeButton3" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 618.0
+margin_right = 923.0
+margin_bottom = 164.0
+
+[node name="UpgradeButton4" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_top = 168.0
+margin_right = 305.0
+margin_bottom = 332.0
+
+[node name="UpgradeButton5" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 309.0
+margin_top = 168.0
+margin_right = 614.0
+margin_bottom = 332.0
+
+[node name="UpgradeButton6" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 618.0
+margin_top = 168.0
+margin_right = 923.0
+margin_bottom = 332.0
+
+[node name="UpgradeButton7" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_top = 336.0
+margin_right = 305.0
+margin_bottom = 500.0
+
+[node name="UpgradeButton8" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 309.0
+margin_top = 336.0
+margin_right = 614.0
+margin_bottom = 500.0
+
+[node name="UpgradeButton9" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+margin_left = 618.0
+margin_top = 336.0
+margin_right = 923.0
+margin_bottom = 500.0
