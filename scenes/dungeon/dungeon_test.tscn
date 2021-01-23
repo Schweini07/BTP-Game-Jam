@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/dungeon_generator.gd" type="Script" id=1]
+[ext_resource path="res://scenes/dungeon/dungeon.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="TileSet" id=1]
@@ -42,5 +42,5 @@ format = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 4, 4 )
+zoom = Vector2( 8, 8 )
 script = SubResource( 2 )
