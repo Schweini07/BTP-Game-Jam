@@ -20,6 +20,8 @@ class Room:
 	
 	func generate():
 		size = Vector2(randi()%10+5, randi()%10+5)
+		pos.x += randi()%4
+		pos.y += randi()%4
 		if pos.x+size.x > len(maze)-1 or pos.y+size.y > len(maze[0])-1:
 			self.size = Vector2(0,0)
 	
@@ -71,13 +73,6 @@ func _ready():
 	def_maze = maze
 	g(Vector2(1,1))
 	
-	#for i in range(51):
-	#	for j in range(51):
-	#		if i == 0 or j == 0:
-	#			maze[i].append("wall")
-	#		elif i == 50 or j == 50:
-	#			maze[i].append("wall")
-	
 	var rooms = []
 	var room
 	for i in range(len(maze)/14):
@@ -88,13 +83,6 @@ func _ready():
 			room.generate()
 			maze = room.add_to_maze()
 			rooms.append(room)
-	
-	for i in range(51):
-		for j in range(51):
-			if i == 0 or j == 0:
-				maze[i].append("wall")
-			elif i == 50 or j == 50:
-				maze[i].append("wall")
 	
 	draw()
 	
@@ -120,6 +108,8 @@ func g(pos):
 	
 	if len(unvisited) < 1:
 		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
+		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
+		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
 		return
 	else:
 		while len(done) < len(unvisited):
@@ -130,7 +120,7 @@ func g(pos):
 				g(npos)
 				done.append(rng)
 				unvisited = []
-				for i in range(4):
+				for i in range(3):
 					if (pos.x+move_map[i].x)*2 < len(maze) and (pos.y+move_map[i].y)*2 < len(maze[(pos.x+move_map[i].x)*2]):
 						if maze[(pos.x+move_map[i].x)*2][(pos.y+move_map[i].y)*2] != "visited":
 							unvisited.append(i)
