@@ -19,8 +19,7 @@ config/name="BTP-Game-Jam-Github"
 config/icon="res://icon.png"
 
 [autoload]
-
-DungeonGenerator="*res://scripts/dungeon_generator.gd"
+Generator="*res://scripts/dungeon_generator.gd"
 
 [importer_defaults]
 
