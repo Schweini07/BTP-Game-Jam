@@ -41,6 +41,7 @@ class Room:
 	
 	func add_to_maze():
 		var exits = [0, 0, 0, 0]
+		var exits_total = 0
 		for i in range(size.x):
 			for j in range(size.y):
 				if i == 0:
@@ -69,9 +70,29 @@ class Room:
 						exits[3] += 1
 				else:
 					maze[pos.x+i][pos.y+j] = "visited"
-					
+		
+		for i in range(len(exits)):
+			exits_total += exits[i]
+		if exits_total < 2:
+			add_exits()
+		
 		return maze
-
+	func add_exits():
+		var move_map = {
+			0: Vector2(0,1),
+			1: Vector2(0,-1),
+			2: Vector2(1,0),
+			3: Vector2(-1,0),
+		}
+		var exit_pos
+		for i in range(4):
+			exit_pos = pos+move_map[i]*(randi()%min_size)
+			if maze[exit_pos.x][exit_pos.y] == "wall":
+				maze[exit_pos.x][exit_pos.y] = "visited"
+				exit_pos += move_map[i]
+			else:
+				continue
+		
 	func get_scene():
 		var inst = load("res://scenes/dungeon/room.tscn").instance()
 		inst.position = pos*32
