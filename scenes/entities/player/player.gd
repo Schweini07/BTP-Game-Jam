@@ -1,13 +1,11 @@
-extends KinematicBody2D
+extends "res://scenes/entities/base_entity/base_entity.gd"
 
 const MAX_SPEED := 380
 const ACC := 4000
 const DEACC := 2000
 
-var _velocity := Vector2.ZERO
 
-
-func _physics_process(delta: float) -> void:
+func _pre_apply_movement(delta: float) -> void:
 	var input := _get_input()
 	if input == Vector2.ZERO:
 		_apply_friction(DEACC * delta)
