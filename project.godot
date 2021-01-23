@@ -22,9 +22,11 @@ config/icon="res://icon.png"
 
 Generator="*res://scripts/dungeon_generator.gd"
 
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"
