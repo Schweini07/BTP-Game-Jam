@@ -1,6 +1,11 @@
 extends Node
 
+# TODO: make the paths more filtered.
+# TODO: chunks
+
 var maze = []
+
+# map of posible maze checks
 var move_map = {
 	0: Vector2(0,1),
 	1: Vector2(0,-1),
@@ -12,9 +17,12 @@ var move_map = {
 	7: Vector2(1,1),
 }
 var def_maze
+# size of maze. will be one more
 var size = 100
+# frequency at which rooms are placed. size/frequency
 var room_frequency = 14
 
+# basic room class
 class Room:
 	var pos
 	var size
@@ -64,9 +72,13 @@ class Room:
 					
 		return maze
 
+	func get_scene():
+		var inst = load("res://scenes/dungeon/room.tscn").instance()
+		inst.position = pos*32
+		inst.wh = size*32
+		return inst
+
 func generate():
-	randomize()
-	
 	for i in range(size+1):
 		maze.append([])
 		for j in range(size+1):
@@ -79,6 +91,7 @@ func generate():
 	def_maze = maze
 	g(Vector2(1,1))
 	
+	
 	var rooms = []
 	var room
 	for i in range(len(maze)/room_frequency):
@@ -90,13 +103,23 @@ func generate():
 			maze = room.add_to_maze()
 			rooms.append(room)
 	
-	draw()
+	var tr = []
+	tr.append(maze)
+	for i in range(len(rooms)):
+		tr.append(rooms[i].get_scene())
+	
+	# returns instances for dungeon to add
+	# maze is always zero
+	return tr
 	
 func draw():
+	var walls = TileMap.new()
+	walls.tile_set = load("res://assets/tilesets/walls.tres")
 	for i in range(len(maze)):
 		for j in range(len(maze[i])):
 			if maze[i][j] == "wall":
-				$walls.set_cell(i, j, 0)
+				walls.set_cell(i, j, 0)
+	return walls
 
 func g(pos):
 	if maze[pos.x*2][pos.y*2] == "visited":
@@ -113,6 +136,7 @@ func g(pos):
 				unvisited.append(i)
 	
 	if len(unvisited) < 1:
+		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
 		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
 		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
 		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"

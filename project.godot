@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="BTP-Game-Jam"
 config/icon="res://icon.png"
 
+[autoload]
+
+Generator="*res://scripts/dungeon_generator.gd"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
