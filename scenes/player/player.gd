@@ -6,6 +6,8 @@ const DEACC := 2000
 
 var _velocity := Vector2.ZERO
 
+onready var gun = $Gun
+
 
 func _physics_process(delta: float) -> void:
 	var input := _get_input()
@@ -14,8 +16,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		_accelerate(input.normalized() * ACC * delta)
 	_apply_movement()
-	
-	$gun.look_at(get_global_mouse_position())
+
+	gun.look_at(get_global_mouse_position())
 
 
 func _get_input() -> Vector2:

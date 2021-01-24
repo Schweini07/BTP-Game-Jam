@@ -22,10 +22,10 @@ shape = SubResource( 1 )
 
 [node name="TempDebug" parent="." instance=ExtResource( 3 )]
 
-[node name="gun" type="Sprite" parent="."]
+[node name="Gun" type="Sprite" parent="."]
 scale = Vector2( 0.625, 0.125 )
 texture = ExtResource( 4 )
 offset = Vector2( 75, 0 )
 
-[node name="shoot_pos" type="Position2D" parent="gun"]
+[node name="ShootPos" type="Position2D" parent="Gun"]
 position = Vector2( 102.4, 0 )
