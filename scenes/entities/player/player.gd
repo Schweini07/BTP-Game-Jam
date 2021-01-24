@@ -1,23 +1,28 @@
-extends KinematicBody2D
+extends "res://scenes/entities/base_entity/base_entity.gd"
 
 const MAX_SPEED := 380
 const ACC := 4000
 const DEACC := 2000
 
-var _velocity := Vector2.ZERO
+onready var label_velocity: Label = $TempDebug/Velocity
+onready var label_speed: Label = $TempDebug/Speed
 
 onready var gun = $Gun
 
 
-func _physics_process(delta: float) -> void:
+func _process(_delta):
+	label_velocity.text = "Velocity: %s" % Vector2(round(_velocity.x), round(_velocity.y))
+	label_speed.text = "Speed: %s" % round(_velocity.length())
+
+	gun.look_at(get_global_mouse_position())
+
+
+func _pre_apply_movement(delta: float) -> void:
 	var input := _get_input()
 	if input == Vector2.ZERO:
 		_apply_friction(DEACC * delta)
 	else:
 		_accelerate(input.normalized() * ACC * delta)
-	_apply_movement()
-
-	gun.look_at(get_global_mouse_position())
 
 
 func _get_input() -> Vector2:
@@ -38,9 +43,3 @@ func _accelerate(amount: Vector2) -> void:
 	_velocity += amount
 	if _velocity.length() > MAX_SPEED:
 		_velocity = _velocity.clamped(MAX_SPEED)
-
-
-func _apply_movement() -> void:
-	$TempDebug/Velocity.text = "Velocity: %s" % Vector2(round(_velocity.x), round(_velocity.y))
-	$TempDebug/Speed.text = "Speed: %s" % round(_velocity.length())
-	_velocity = move_and_slide(_velocity)

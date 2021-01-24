@@ -22,6 +22,13 @@ config/icon="res://icon.png"
 
 Generator="*res://scripts/dungeon_generator.gd"
 
+[display]
+
+window/size/width=960
+window/size/height=540
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
 [importer_defaults]
 
 texture={
@@ -76,6 +83,12 @@ fire={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Tiles"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemies"
 
 [rendering]
 
