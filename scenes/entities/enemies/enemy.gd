@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_move_along_path()
-	
+
 	if position.distance_to(path[0]) <= SPEED * delta:
 		_velocity = Vector2.ZERO
 		position = position.round()
