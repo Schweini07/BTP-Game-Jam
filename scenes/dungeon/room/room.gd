@@ -11,7 +11,7 @@ func _ready():
 
 func add_boxes():
 	var box_num = wh.x * wh.y * (0.01 * box_chance)
-	for i in range(box_num):
+	for _i in range(box_num):
 		var inst = boxes[randi() % len(boxes)].instance()
 		inst.position = (
 			(Vector2(randi() % int(wh.x - 2), randi() % int(wh.y - 2))) * 64

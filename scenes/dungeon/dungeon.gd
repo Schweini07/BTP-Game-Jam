@@ -3,7 +3,10 @@ extends Node2D
 var chunks_num: Vector2 = Vector2(2, 2)
 var chunks = []
 var chunk_size = 70
+
 onready var tilemap = get_node("../Navigation2D/TileMap")
+onready var rooms = $rooms
+
 
 func _ready():
 	randomize()
@@ -18,7 +21,7 @@ func _ready():
 
 	# tmp, so i don't remove mario's test map. you're welcome
 	tilemap.clear()
-	
+
 	draw()
 	add_frame()
 	add_rooms()
@@ -29,7 +32,7 @@ func add_rooms():
 		for j in range(len(chunks[i])):
 			for k in range(len(chunks[i][j]) - 1):
 				chunks[i][j][k + 1].position += Vector2(i * 70 * 64, j * 70 * 64)
-				$rooms.add_child(chunks[i][j][k + 1])
+				rooms.add_child(chunks[i][j][k + 1])
 
 
 func draw():
@@ -49,8 +52,9 @@ func draw():
 						tilemap.set_cell(
 							i * chunk_size + k - offset.x, j * chunk_size + l - offset.y, 0
 						)
-						
+
 	tilemap.update_bitmask_region()
+
 
 func remove_frame(arr):
 	for i in range(len(arr)):
