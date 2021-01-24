@@ -157,10 +157,13 @@ func g(pos):
 				unvisited.append(i)
 	
 	if len(unvisited) < 1:
+		#for i in range(4):
+		#	maze[pos.x*2+move_map[i].x][pos.y*2+move_map[i].y] = "visited"
 		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
 		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
 		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
 		maze[pos.x*2+randi()%3-1][pos.y*2-randi()%3-1] = "visited"
+
 		return
 	else:
 		while len(done) < len(unvisited):
@@ -171,7 +174,7 @@ func g(pos):
 				g(npos)
 				done.append(rng)
 				unvisited = []
-				for i in range(3):
+				for i in range(4):
 					if (pos.x+move_map[i].x)*2 < len(maze) and (pos.y+move_map[i].y)*2 < len(maze[(pos.x+move_map[i].x)*2]):
 						if maze[(pos.x+move_map[i].x)*2][(pos.y+move_map[i].y)*2] != "visited":
 							unvisited.append(i)
