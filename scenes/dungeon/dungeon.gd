@@ -20,12 +20,13 @@ func _ready():
 	add_frame()
 	add_rooms()
 
+
 func add_rooms():
 	for i in range(len(chunks)):
 		for j in range(len(chunks[i])):
-			for k in range(len(chunks[i][j])-1):
-				chunks[i][j][k+1].position += Vector2(i*70*64, j*70*64)
-				$rooms.add_child(chunks[i][j][k+1])
+			for k in range(len(chunks[i][j]) - 1):
+				chunks[i][j][k + 1].position += Vector2(i * 70 * 64, j * 70 * 64)
+				$rooms.add_child(chunks[i][j][k + 1])
 
 
 func draw():

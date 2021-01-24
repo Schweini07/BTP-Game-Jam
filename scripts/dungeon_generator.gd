@@ -38,7 +38,7 @@ class Room:
 		size = Vector2(randi() % max_size + min_size, randi() % max_size + min_size)
 		pos.x += randi() % max_offset
 		pos.y += randi() % max_offset
-		box_chance = randi()%10
+		box_chance = randi() % 10
 		if pos.x + size.x > len(maze) - 1 or pos.y + size.y > len(maze[0]) - 1:
 			self.size = Vector2(0, 0)
 
@@ -158,8 +158,9 @@ func get_unvisited(pos):
 		):
 			if maze[(pos.x + move_map[i].x) * 2][(pos.y + move_map[i].y) * 2] != "visited":
 				unvisited.append(i)
-				
+
 	return unvisited
+
 
 func g(pos):
 	if maze[pos.x * 2][pos.y * 2] == "visited":

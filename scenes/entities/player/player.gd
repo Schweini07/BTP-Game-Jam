@@ -13,7 +13,7 @@ onready var gun = $Gun
 func _process(_delta):
 	label_velocity.text = "Velocity: %s" % Vector2(round(_velocity.x), round(_velocity.y))
 	label_speed.text = "Speed: %s" % round(_velocity.length())
-	
+
 	gun.look_at(get_global_mouse_position())
 
 
