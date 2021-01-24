@@ -32,11 +32,13 @@ class Room:
 	var max_size = 10
 	var min_size = 5
 	var max_offset = 4
+	var box_chance
 
 	func generate():
 		size = Vector2(randi() % max_size + min_size, randi() % max_size + min_size)
 		pos.x += randi() % max_offset
 		pos.y += randi() % max_offset
+		box_chance = randi()%10
 		if pos.x + size.x > len(maze) - 1 or pos.y + size.y > len(maze[0]) - 1:
 			self.size = Vector2(0, 0)
 
@@ -96,9 +98,10 @@ class Room:
 				continue
 
 	func get_scene():
-		var inst = load("res://scenes/dungeon/room.tscn").instance()
-		inst.position = pos * 32
-		inst.wh = size * 32
+		var inst = load("res://scenes/dungeon/room/room.tscn").instance()
+		inst.global_position = pos * 64
+		inst.wh = size
+		inst.box_chance = box_chance
 		return inst
 
 
@@ -146,15 +149,8 @@ func draw():
 	return walls
 
 
-func g(pos):
-	if maze[pos.x * 2][pos.y * 2] == "visited":
-		return
-	maze[pos.x * 2][pos.y * 2] = "visited"
-
+func get_unvisited(pos):
 	var unvisited = []
-	var done = []
-	var npos
-	var rng
 	for i in range(4):
 		if (
 			(pos.x + move_map[i].x) * 2 < len(maze)
@@ -162,14 +158,27 @@ func g(pos):
 		):
 			if maze[(pos.x + move_map[i].x) * 2][(pos.y + move_map[i].y) * 2] != "visited":
 				unvisited.append(i)
+				
+	return unvisited
+
+func g(pos):
+	if maze[pos.x * 2][pos.y * 2] == "visited":
+		return
+	maze[pos.x * 2][pos.y * 2] = "visited"
+
+	var done = []
+	var npos
+	var rng
+	var unvisited = get_unvisited(pos)
 
 	if len(unvisited) < 1:
 		#for i in range(4):
 		#	maze[pos.x*2+move_map[i].x][pos.y*2+move_map[i].y] = "visited"
-		maze[pos.x * 2 + randi() % 3 - 1][pos.y * 2 - randi() % 3 - 1] = "visited"
-		maze[pos.x * 2 + randi() % 3 - 1][pos.y * 2 - randi() % 3 - 1] = "visited"
-		maze[pos.x * 2 + randi() % 3 - 1][pos.y * 2 - randi() % 3 - 1] = "visited"
-		maze[pos.x * 2 + randi() % 3 - 1][pos.y * 2 - randi() % 3 - 1] = "visited"
+		for _i in range(4):
+			maze[pos.x * 2 + randi() % 3 - 1][pos.y * 2 - randi() % 3 - 1] = "visited"
+
+		if len(get_unvisited(pos)) < 2:
+			maze[pos.x * 2][pos.y * 2] = "upgrade"
 
 		return
 	else:
