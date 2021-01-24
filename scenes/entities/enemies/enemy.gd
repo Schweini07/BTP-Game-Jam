@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	
 	if position.distance_to(path[0]) <= SPEED * delta:
 		_velocity = Vector2.ZERO
+		position = path[0]
 		path.remove(0)
 		_start_point = position
 	if not path:
