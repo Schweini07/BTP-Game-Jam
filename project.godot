@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="BTP-Game-Jam"
+run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]

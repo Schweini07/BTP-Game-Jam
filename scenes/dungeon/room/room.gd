@@ -6,8 +6,6 @@ var boxes = [load("res://scenes/dungeon/room/boxes/box.tscn")]
 
 
 func _ready():
-	print(global_position)
-#	pass
 	add_boxes()
 
 
