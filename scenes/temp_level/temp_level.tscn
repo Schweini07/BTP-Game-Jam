@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -29,7 +28,7 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 } ]
 0/z_index = 0
 
-[node name="TempLevel" type="Node"]
+[node name="TempLevel" type="Node2D"]
 
 [node name="TempBG" type="ColorRect" parent="."]
 margin_left = -239.0
@@ -44,5 +43,3 @@ __meta__ = {
 tile_set = SubResource( 2 )
 format = 1
 tile_data = PoolIntArray( -131074, 0, 0, -131073, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -3, 0, 0, -2, 0, 0 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
