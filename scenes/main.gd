@@ -1,6 +1,6 @@
 extends Node2D
 
-var bullet: PackedScene = preload("res://scenes/player/bullet.tscn")
+var bullet: PackedScene = preload("res://scenes/entities/player/bullet.tscn")
 
 onready var shoot_pos: Position2D = $Player/Gun/ShootPos
 onready var gun: Sprite = $Player/Gun
