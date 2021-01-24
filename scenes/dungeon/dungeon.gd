@@ -40,9 +40,14 @@ func draw():
 				for l in range(len(current[k])):
 					if current[k][l] == "wall":
 						$walls.set_cell(
+							i * chunk_size + k - offset.x, j * chunk_size + l - offset.y, 1
+						)
+					else:
+						$walls.set_cell(
 							i * chunk_size + k - offset.x, j * chunk_size + l - offset.y, 0
 						)
-
+						
+	$walls.update_bitmask_region()
 
 func remove_frame(arr):
 	for i in range(len(arr)):
@@ -56,6 +61,7 @@ func add_frame():
 	for i in range(chunks_num.x * chunk_size):
 		for j in range(chunks_num.y * chunk_size):
 			if i == 0 or j == 0:
-				$walls.set_cell(i, j, 0)
+				$walls.set_cell(i, j, 1)
 			if i == chunks_num.x * chunk_size - 1 or j == chunks_num.y * chunk_size - 1:
-				$walls.set_cell(i, j, 0)
+				$walls.set_cell(i, j, 1)
+	$walls.update_bitmask_region()
