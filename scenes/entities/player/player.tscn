@@ -4,8 +4,8 @@
 [ext_resource path="res://assets/sprite_frames/spriteframes_player.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://scenes/debug/ui_debug.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 20 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 3.0
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -19,6 +19,7 @@ animation = "idle"
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 10 )
 shape = SubResource( 1 )
 
 [node name="TempDebug" parent="." instance=ExtResource( 3 )]
