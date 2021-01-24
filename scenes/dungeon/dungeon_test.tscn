@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/dungeon/dungeon.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=3]
 
 [sub_resource type="TileSet" id=1]
 0/name = "icon.png 0"
@@ -22,7 +23,7 @@
 [sub_resource type="GDScript" id=2]
 script/source = "extends Camera2D
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed(\"ui_down\"):
 		position.y += 20
 	if Input.is_action_pressed(\"ui_up\"):
@@ -44,3 +45,9 @@ format = 1
 current = true
 zoom = Vector2( 8, 8 )
 script = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( -28.3438, 6.79333 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="rooms" type="Node2D" parent="."]

@@ -7,6 +7,8 @@ const DEACC := 2000
 onready var label_velocity: Label = $TempDebug/Velocity
 onready var label_speed: Label = $TempDebug/Speed
 
+onready var gun = $Gun
+
 
 func _process(_delta):
 	label_velocity.text = "Velocity: %s" % Vector2(round(_velocity.x), round(_velocity.y))
@@ -19,6 +21,8 @@ func _pre_apply_movement(delta: float) -> void:
 		_apply_friction(DEACC * delta)
 	else:
 		_accelerate(input.normalized() * ACC * delta)
+
+	gun.look_at(get_global_mouse_position())
 
 
 func _get_input() -> Vector2:
