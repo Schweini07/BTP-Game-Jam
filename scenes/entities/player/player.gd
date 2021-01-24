@@ -1,6 +1,6 @@
 extends "res://scenes/entities/base_entity/base_entity.gd"
 
-const MAX_SPEED := 380
+const MAX_SPEED := 240
 const ACC := 4000
 const DEACC := 2000
 
