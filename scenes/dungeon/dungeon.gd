@@ -12,7 +12,7 @@ func _ready():
 	Generator.room_frequency = 14
 	for i in range(chunks_num.x):
 		chunks.append([])
-		for j in range(chunks_num.y):
+		for _j in range(chunks_num.y):
 			Generator.maze = []
 			chunks[i].append(Generator.generate())
 
