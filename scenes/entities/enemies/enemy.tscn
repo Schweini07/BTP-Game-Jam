@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/entities/enemies/enemy.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 30 )
+extents = Vector2( 20, 20 )
 
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
