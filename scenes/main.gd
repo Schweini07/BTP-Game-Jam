@@ -13,7 +13,7 @@ onready var gun: Sprite = $Player/Gun
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
 		shoot()
-	
+
 	if not event is InputEventMouseButton or event.button_index != BUTTON_LEFT or not event.pressed:
 		return
 
