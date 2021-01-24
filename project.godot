@@ -22,6 +22,13 @@ config/icon="res://icon.png"
 
 Generator="*res://scripts/dungeon_generator.gd"
 
+[display]
+
+window/size/width=960
+window/size/height=540
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
 [importer_defaults]
 
 texture={
