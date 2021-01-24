@@ -692,3 +692,4 @@ tile_data = PoolIntArray( -851977, 0, 262146, -851976, 0, 196610, -917503, 0, 26
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 
 [node name="Line2D" type="Line2D" parent="."]
+width = 1.0
