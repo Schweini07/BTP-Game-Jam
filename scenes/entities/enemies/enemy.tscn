@@ -3,8 +3,8 @@
 [ext_resource path="res://scenes/entities/enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite_frames/spriteframes_player.tres" type="SpriteFrames" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 20 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 3.0
 
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -15,4 +15,5 @@ frames = ExtResource( 2 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 10 )
 shape = SubResource( 1 )
