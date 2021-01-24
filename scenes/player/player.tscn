@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/player/player.png" type="Texture" id=2]
 [ext_resource path="res://scenes/debug/ui_debug.tscn" type="PackedScene" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -20,3 +21,11 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="TempDebug" parent="." instance=ExtResource( 3 )]
+
+[node name="Gun" type="Sprite" parent="."]
+scale = Vector2( 0.625, 0.125 )
+texture = ExtResource( 4 )
+offset = Vector2( 75, 0 )
+
+[node name="ShootPos" type="Position2D" parent="Gun"]
+position = Vector2( 102.4, 0 )
