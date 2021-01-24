@@ -3,7 +3,7 @@ extends Node2D
 var chunks_num: Vector2 = Vector2(2, 2)
 var chunks = []
 var chunk_size = 70
-
+onready var tilemap = get_node("../Navigation2D/TileMap")
 
 func _ready():
 	randomize()
@@ -16,6 +16,9 @@ func _ready():
 			Generator.maze = []
 			chunks[i].append(Generator.generate())
 
+	# tmp, so i don't remove mario's test map. you're welcome
+	tilemap.clear()
+	
 	draw()
 	add_frame()
 	add_rooms()
@@ -39,15 +42,15 @@ func draw():
 			for k in range(len(current)):
 				for l in range(len(current[k])):
 					if current[k][l] == "wall":
-						$walls.set_cell(
+						tilemap.set_cell(
 							i * chunk_size + k - offset.x, j * chunk_size + l - offset.y, 1
 						)
 					else:
-						$walls.set_cell(
+						tilemap.set_cell(
 							i * chunk_size + k - offset.x, j * chunk_size + l - offset.y, 0
 						)
 						
-	$walls.update_bitmask_region()
+	tilemap.update_bitmask_region()
 
 func remove_frame(arr):
 	for i in range(len(arr)):
@@ -61,7 +64,7 @@ func add_frame():
 	for i in range(chunks_num.x * chunk_size):
 		for j in range(chunks_num.y * chunk_size):
 			if i == 0 or j == 0:
-				$walls.set_cell(i, j, 1)
+				tilemap.set_cell(i, j, 1)
 			if i == chunks_num.x * chunk_size - 1 or j == chunks_num.y * chunk_size - 1:
-				$walls.set_cell(i, j, 1)
-	$walls.update_bitmask_region()
+				tilemap.set_cell(i, j, 1)
+	tilemap.update_bitmask_region()
