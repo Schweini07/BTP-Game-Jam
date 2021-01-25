@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/base_enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/entities/player/player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/graphics/tileset/wall.png" type="Texture" id=4]
 [ext_resource path="res://assets/graphics/tileset/floor.png" type="Texture" id=5]
 [ext_resource path="res://scenes/dungeon/dungeon.gd" type="Script" id=6]
+[ext_resource path="res://assets/graphics/entities/dungeon/box.png" type="Texture" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -339,7 +340,10 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [sub_resource type="ConvexPolygonShape2D" id=95]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
-[sub_resource type="TileSet" id=96]
+[sub_resource type="ConvexPolygonShape2D" id=96]
+points = PoolVector2Array( 8.01125, 4.98233, 23.9672, 5.1446, 23.8157, 20.9599, 8.10862, 21.1546 )
+
+[sub_resource type="TileSet" id=97]
 0/name = "floor"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
@@ -675,6 +679,27 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
+2/name = "box.png 2"
+2/texture = ExtResource( 7 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 32, 32 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 96 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 96 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
@@ -682,7 +707,7 @@ script = ExtResource( 3 )
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
-tile_set = SubResource( 96 )
+tile_set = SubResource( 97 )
 cell_size = Vector2( 32, 32 )
 compatibility_mode = true
 collision_mask = 0
@@ -693,10 +718,19 @@ tile_data = PoolIntArray( -851977, 0, 262146, -851976, 0, 196610, -917503, 0, 26
 position = Vector2( 159, 102 )
 nav_2d_path = NodePath("../Navigation2D")
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 47.7047, 45.4597 )
-
 [node name="dungeon" type="Node2D" parent="."]
 script = ExtResource( 6 )
 
 [node name="rooms" type="Node2D" parent="dungeon"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 3225.53, 1477.03 )
+current = true
+zoom = Vector2( 8, 8 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 47.7047, 45.4597 )
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 0.15
+[connection signal="timeout" from="ShootCooldown" to="." method="_on_ShootCooldown_timeout"]
