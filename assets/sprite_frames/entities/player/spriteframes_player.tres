@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=13 format=2]
 
 [ext_resource path="res://assets/graphics/entities/player/player_run.png" type="Texture" id=1]
-[ext_resource path="res://assets/graphics/entities/player/plauyer_hurt.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/entities/player/player_hurt.png" type="Texture" id=2]
 [ext_resource path="res://assets/graphics/entities/player/player_idle.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -45,7 +45,7 @@ animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "idle",
-"speed": 12.0
+"speed": 7.0
 }, {
 "frames": [ SubResource( 5 ) ],
 "loop": false,
@@ -55,5 +55,5 @@ animations = [ {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "run",
-"speed": 12.0
+"speed": 10.0
 } ]

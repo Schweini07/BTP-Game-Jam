@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plauyer_hurt.png-f36c9342b17c14252c75bfcc409947f6.stex"
+path="res://.import/big_demon_run.png-486c38f663212066e80ee13f77a7cfa9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/entities/player/plauyer_hurt.png"
-dest_files=[ "res://.import/plauyer_hurt.png-f36c9342b17c14252c75bfcc409947f6.stex" ]
+source_file="res://assets/graphics/entities/enemies/big_demon/big_demon_run.png"
+dest_files=[ "res://.import/big_demon_run.png-486c38f663212066e80ee13f77a7cfa9.stex" ]
 
 [params]
 
