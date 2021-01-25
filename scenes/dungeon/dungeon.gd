@@ -2,12 +2,24 @@ extends Node2D
 
 const CHUNK_SIZE := 70
 const CHUNKS_NUM := Vector2(2, 2)
+const doors = preload("res://scenes/dungeon/doors/doors.tscn")
 
 var chunks = []
 
 onready var tilemap = get_node("../Navigation2D/TileMap")
 onready var rooms = $rooms
+onready var player = get_node("../Player")
 
+var neighbors = [
+	Vector2(0,1),
+	Vector2(0,-1),
+	Vector2(1,-1),
+	Vector2(-1,-1),
+	Vector2(-1,1),
+	Vector2(1,1),
+	Vector2(1,0),
+	Vector2(-1,0),
+]
 
 func _ready():
 	randomize()
@@ -37,6 +49,7 @@ func add_rooms():
 
 
 func draw():
+	var inst
 	var current
 	var offset = Vector2(0, 0)
 	for i in range(len(chunks)):
@@ -53,6 +66,11 @@ func draw():
 						tilemap.set_cell(
 							i * CHUNK_SIZE + k - offset.x, j * CHUNK_SIZE + l - offset.y, 0
 						)
+
+					if current[k][l] == "exit":
+						inst = doors.instance()
+						inst.position = Vector2(i * (CHUNK_SIZE - 2) + k, j * (CHUNK_SIZE - 2) + l) * 32 + Vector2(16, 16)
+						add_child(inst)
 
 	tilemap.update_bitmask_region()
 

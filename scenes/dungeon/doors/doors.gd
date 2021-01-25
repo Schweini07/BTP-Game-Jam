@@ -1,0 +1,14 @@
+extends Node2D
+
+onready var player = get_node("../../Player")
+onready var tilemap = get_node("../../Navigation2D/TileMap")
+onready var pos = Vector2(int(position.x/32), int(position.y/32))
+
+func _on_Area2D_body_entered(body):
+	if body == player:
+		tilemap.set_cell(pos.x, pos.y, 4)
+
+
+func _on_Area2D_body_exited(body):
+	tilemap.set_cell(pos.x, pos.y, 5)
+	tilemap.update_bitmask_region(pos-Vector2(10,10), pos+Vector2(10,10))

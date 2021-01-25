@@ -51,25 +51,25 @@ class Room:
 					if maze[pos.x + i - 1][pos.y + j] != "visited" or exits[0] > max_exits:
 						maze[pos.x + i][pos.y + j] = "wall"
 					else:
-						maze[pos.x + i][pos.y + j] = "visited"
+						maze[pos.x + i][pos.y + j] = "exit"
 						exits[0] += 1
 				elif j == 0:
 					if maze[pos.x + i][pos.y + j - 1] != "visited" or exits[1] > max_exits:
 						maze[pos.x + i][pos.y + j] = "wall"
 					else:
-						maze[pos.x + i][pos.y + j] = "visited"
+						maze[pos.x + i][pos.y + j] = "exit"
 						exits[1] += 1
 				elif i == size.x - 1:
 					if maze[pos.x + i + 1][pos.y + j] != "visited" or exits[2] > max_exits:
 						maze[pos.x + i][pos.y + j] = "wall"
 					else:
-						maze[pos.x + i][pos.y + j] = "visited"
+						maze[pos.x + i][pos.y + j] = "exit"
 						exits[2] += 1
 				elif j == size.y - 1:
 					if maze[pos.x + i][pos.y + j + 1] != "visited" or exits[3] > max_exits:
 						maze[pos.x + i][pos.y + j] = "wall"
 					else:
-						maze[pos.x + i][pos.y + j] = "visited"
+						maze[pos.x + i][pos.y + j] = "exit"
 						exits[3] += 1
 				else:
 					maze[pos.x + i][pos.y + j] = "visited"
