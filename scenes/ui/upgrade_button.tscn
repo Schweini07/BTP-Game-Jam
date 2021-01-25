@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/ui/upgrade_button.gd" type="Script" id=2]
 
 [node name="UpgradeButton" type="TextureButton"]
-margin_right = 128.0
+margin_right = 120.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
