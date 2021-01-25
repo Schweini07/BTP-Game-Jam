@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plauyer_hurt.png-f36c9342b17c14252c75bfcc409947f6.stex"
+path="res://.import/player_hurt.png-b115ca9ed6ab8a68f0ef3f6b48d108ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/entities/player/plauyer_hurt.png"
-dest_files=[ "res://.import/plauyer_hurt.png-f36c9342b17c14252c75bfcc409947f6.stex" ]
+source_file="res://assets/graphics/entities/player/player_hurt.png"
+dest_files=[ "res://.import/player_hurt.png-b115ca9ed6ab8a68f0ef3f6b48d108ea.stex" ]
 
 [params]
 
