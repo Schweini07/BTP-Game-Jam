@@ -1,27 +1,39 @@
 extends KinematicBody2D
 
 var _velocity := Vector2.ZERO
-var _health: float = 100
+var health: float = 100
 
 
 func _physics_process(delta: float) -> void:
 	_pre_apply_movement(delta)
-	_apply_movement()
+	_apply_movement(delta)
+	_post_apply_movement(delta)
 
 
 func _pre_apply_movement(_delta: float) -> void:
 	pass
 
 
-func _apply_movement() -> void:
+func _apply_movement(_delta: float) -> void:
 	_velocity = move_and_slide(_velocity)
 
 
+func _post_apply_movement(_delta: float) -> void:
+	pass
+
+
 func hurt(damage: float) -> void:
-	_health -= damage
-	if _health <= 0:
+	health -= damage
+	var is_dead = false
+	if health <= 0:
+		is_dead = true
 		die()
+	_post_hurt(damage, is_dead)
+
+
+func _post_hurt(_damage: float, _is_dead: bool) -> void:
+	pass
 
 
 func die() -> void:
-	pass
+	queue_free()
