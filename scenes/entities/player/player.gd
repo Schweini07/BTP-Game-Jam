@@ -40,6 +40,14 @@ func _post_apply_movement(_delta: float) -> void:
 	animate()
 
 
+func _post_hurt(_damage: float, _is_dead: bool) -> void:
+	was_hurt = true
+	anim_sprite.play("hurt")
+	anim_player.play("hurt")
+	yield(anim_sprite, "animation_finished")
+	was_hurt = false
+
+
 func animate() -> void:
 	if _velocity.length() > 0:
 		anim_sprite.flip_h = _velocity.x < 0
@@ -67,11 +75,3 @@ func _accelerate(amount: Vector2) -> void:
 	_velocity += amount
 	if _velocity.length() > MAX_SPEED:
 		_velocity = _velocity.clamped(MAX_SPEED)
-
-
-func _post_hurt(_damage: float, _is_dead: bool) -> void:
-	was_hurt = true
-	anim_sprite.play("hurt")
-	anim_player.play("hurt")
-	yield(anim_sprite, "animation_finished")
-	was_hurt = false

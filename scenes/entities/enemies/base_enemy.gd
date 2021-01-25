@@ -11,13 +11,12 @@ onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 func _pre_apply_movement(delta: float) -> void:
 	if not should_move_along_path:
 		return
-	
+
 	_move_along_path()
 
 	if position.distance_to(path[0]) <= SPEED * delta:
 		position = position.round()
 		path.remove(0)
-		_start_point = position
 	if not path:
 		_velocity = Vector2.ZERO
 		should_move_along_path = false
