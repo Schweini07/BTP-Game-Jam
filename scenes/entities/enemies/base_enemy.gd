@@ -1,6 +1,6 @@
 extends "res://scenes/entities/base_entity/base_entity.gd"
 
-const SPEED := 300
+const SPEED := 200
 
 var path: PoolVector2Array setget set_path
 var should_move_along_path := false
