@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "BaseEnemy",
+"language": "GDScript",
+"path": "res://scenes/entities/enemies/base_enemy.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BaseEntity",
+"language": "GDScript",
+"path": "res://scenes/entities/base_entity/base_entity.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scenes/entities/player/player.gd"
+} ]
 _global_script_class_icons={
-
+"BaseEnemy": "",
+"BaseEntity": "",
+"Player": ""
 }
 
 [application]

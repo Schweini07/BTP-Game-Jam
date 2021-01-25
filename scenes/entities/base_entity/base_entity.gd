@@ -1,3 +1,4 @@
+class_name BaseEntity
 extends KinematicBody2D
 
 var _velocity := Vector2.ZERO

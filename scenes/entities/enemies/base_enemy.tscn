@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/base_enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite_frames/entities/enemies/spriteframes_big_demon.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://scenes/entities/enemies/ai.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.0
 
-[node name="BaseEnemy" type="KinematicBody2D"]
+[node name="BaseEnemy" type="KinematicBody2D" groups=[
+"enemy",
+]]
 collision_layer = 4
 script = ExtResource( 1 )
 
@@ -17,3 +20,11 @@ animation = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 13 )
 shape = SubResource( 1 )
+
+[node name="AI" parent="." instance=ExtResource( 3 )]
+
+[node name="PathNode" type="Node" parent="."]
+
+[node name="Path" type="Line2D" parent="PathNode"]
+width = 1.0
+default_color = Color( 0.4, 0.4, 1, 0.2 )

@@ -1,3 +1,4 @@
+class_name Player
 extends "res://scenes/entities/base_entity/base_entity.gd"
 
 const MAX_SPEED := 240
