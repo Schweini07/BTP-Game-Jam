@@ -702,3 +702,7 @@ position = Vector2( 47.7047, 45.4597 )
 script = ExtResource( 6 )
 
 [node name="rooms" type="Node2D" parent="dungeon"]
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 0.15
+[connection signal="timeout" from="ShootCooldown" to="." method="_on_ShootCooldown_timeout"]
