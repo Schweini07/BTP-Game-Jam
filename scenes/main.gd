@@ -4,7 +4,7 @@ var bullet: PackedScene = preload("res://scenes/entities/player/bullet.tscn")
 
 onready var nav_2d: Navigation2D = $Navigation2D
 onready var line_2d: Line2D = $Line2D
-onready var enemy: KinematicBody2D = $Enemy
+onready var enemy: KinematicBody2D = $BaseEnemy
 onready var player: KinematicBody2D = $Player
 onready var shoot_pos: Position2D = $Player/Gun/ShootPos
 onready var gun: Sprite = $Player/Gun
