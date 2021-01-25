@@ -1,8 +1,9 @@
 extends Node2D
 
-var chunks_num: Vector2 = Vector2(2, 2)
+const CHUNK_SIZE := 70
+const CHUNKS_NUM := Vector2(2, 2)
+
 var chunks = []
-var chunk_size = 70
 
 onready var tilemap = get_node("../Navigation2D/TileMap")
 onready var rooms = $rooms
@@ -11,11 +12,11 @@ onready var rooms = $rooms
 func _ready():
 	randomize()
 
-	Generator.size = chunk_size + 2
+	Generator.size = CHUNK_SIZE + 2
 	Generator.room_frequency = 14
-	for i in range(chunks_num.x):
+	for i in range(CHUNKS_NUM.x):
 		chunks.append([])
-		for _j in range(chunks_num.y):
+		for _j in range(CHUNKS_NUM.y):
 			Generator.maze = []
 			chunks[i].append(Generator.generate())
 
@@ -31,7 +32,7 @@ func add_rooms():
 	for i in range(len(chunks)):
 		for j in range(len(chunks[i])):
 			for k in range(len(chunks[i][j]) - 1):
-				chunks[i][j][k + 1].position += Vector2(i * (chunk_size-2) * 32, j * (chunk_size-2) * 32)
+				chunks[i][j][k + 1].position += Vector2(i * (CHUNK_SIZE-2) * 32, j * (CHUNK_SIZE-2) * 32)
 				rooms.add_child(chunks[i][j][k + 1])
 
 
@@ -46,11 +47,11 @@ func draw():
 				for l in range(len(current[k])):
 					if current[k][l] == "wall":
 						tilemap.set_cell(
-							i * chunk_size + k - offset.x, j * chunk_size + l - offset.y, 1
+							i * CHUNK_SIZE + k - offset.x, j * CHUNK_SIZE + l - offset.y, 1
 						)
 					else:
 						tilemap.set_cell(
-							i * chunk_size + k - offset.x, j * chunk_size + l - offset.y, 0
+							i * CHUNK_SIZE + k - offset.x, j * CHUNK_SIZE + l - offset.y, 0
 						)
 
 	tilemap.update_bitmask_region()
@@ -65,10 +66,10 @@ func remove_frame(arr):
 
 
 func add_frame():
-	for i in range(chunks_num.x * chunk_size):
-		for j in range(chunks_num.y * chunk_size):
+	for i in range(CHUNKS_NUM.x * CHUNK_SIZE):
+		for j in range(CHUNKS_NUM.y * CHUNK_SIZE):
 			if i == 0 or j == 0:
 				tilemap.set_cell(i, j, 1)
-			if i == chunks_num.x * chunk_size - 1 or j == chunks_num.y * chunk_size - 1:
+			if i == CHUNKS_NUM.x * CHUNK_SIZE - 1 or j == CHUNKS_NUM.y * CHUNK_SIZE - 1:
 				tilemap.set_cell(i, j, 1)
 	tilemap.update_bitmask_region()
