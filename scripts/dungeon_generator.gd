@@ -99,7 +99,7 @@ class Room:
 
 	func get_scene():
 		var inst = load("res://scenes/dungeon/room/room.tscn").instance()
-		inst.global_position = pos * 64
+		inst.global_position = pos * 32
 		inst.wh = size
 		inst.box_chance = box_chance
 		return inst
