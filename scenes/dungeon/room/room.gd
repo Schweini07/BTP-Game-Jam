@@ -11,10 +11,7 @@ func _ready():
 
 func add_boxes():
 	var box_num = wh.x * wh.y * (0.01 * box_chance)
+	var offset
 	for _i in range(box_num):
-		var inst = boxes[randi() % len(boxes)].instance()
-		inst.position = (
-			(Vector2(randi() % int(wh.x - 2), randi() % int(wh.y - 2))) * 64
-			+ Vector2(72, 72)
-		)
-		add_child(inst)
+		offset = Vector2(randi()%int(wh.x-3)+2, randi()%int(wh.y-3)+2)
+		get_node("../../../Navigation2D/TileMap").set_cell(position.x/32+offset.x,  position.y/32+offset.y, 2)
