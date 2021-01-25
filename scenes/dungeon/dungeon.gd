@@ -31,7 +31,7 @@ func add_rooms():
 	for i in range(len(chunks)):
 		for j in range(len(chunks[i])):
 			for k in range(len(chunks[i][j]) - 1):
-				chunks[i][j][k + 1].position += Vector2(i * 70 * 64, j * 70 * 64)
+				chunks[i][j][k + 1].position += Vector2(i * (chunk_size-2) * 32, j * (chunk_size-2) * 32)
 				rooms.add_child(chunks[i][j][k + 1])
 
 

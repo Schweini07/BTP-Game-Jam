@@ -722,6 +722,11 @@ script = ExtResource( 6 )
 [node name="Enemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 46.592, 100 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 3225.53, 1477.03 )
+current = true
+zoom = Vector2( 8, 8 )
+
 [node name="Line2D" type="Line2D" parent="."]
 width = 1.0
 
