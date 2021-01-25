@@ -694,6 +694,7 @@ position = Vector2( 63, 24 )
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 1.0
+default_color = Color( 0.4, 0.4, 1, 0.2 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 47.7047, 45.4597 )
