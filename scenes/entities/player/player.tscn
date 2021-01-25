@@ -1,9 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/entities/player/player.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprite_frames/spriteframes_player.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://assets/sprite_frames/entities/player/spriteframes_player.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://scenes/ui/debug/debug.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0

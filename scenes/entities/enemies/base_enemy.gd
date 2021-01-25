@@ -3,32 +3,44 @@ extends "res://scenes/entities/base_entity/base_entity.gd"
 const SPEED := 300
 
 var path: PoolVector2Array setget set_path
+var should_move_along_path := false
 
-var _start_point := Vector2.ZERO
-
-
-func _ready() -> void:
-	set_physics_process(false)
+onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 
 
-func _physics_process(delta: float) -> void:
+func _pre_apply_movement(delta: float) -> void:
+	if not should_move_along_path:
+		return
+	
 	_move_along_path()
 
 	if position.distance_to(path[0]) <= SPEED * delta:
-		_velocity = Vector2.ZERO
 		position = position.round()
 		path.remove(0)
 		_start_point = position
 	if not path:
-		set_physics_process(false)
+		_velocity = Vector2.ZERO
+		should_move_along_path = false
+
+
+func _post_apply_movement(_delta: float) -> void:
+	animate()
+
+
+func animate() -> void:
+	print(anim_sprite.animation, anim_sprite.frame)
+	if _velocity.length() > 0:
+		anim_sprite.flip_h = _velocity.x < 0
+		anim_sprite.play("run")
+	else:
+		anim_sprite.play("idle")
 
 
 func set_path(value: PoolVector2Array) -> void:
 	path = value
 	if not value:
 		return
-	set_physics_process(true)
-	_start_point = position
+	should_move_along_path = true
 
 
 func _move_along_path() -> void:
