@@ -6,6 +6,7 @@ enum State {
 	DISABLED,
 	SEARCH,
 	ATTACK,
+	LOST_PLAYER,
 }
 
 var is_initialized := false
@@ -41,7 +42,24 @@ func _physics_process(_delta: float) -> void:
 				_player.follow_position_2d.global_position,
 				false
 			)
-			_enemy.path = path_to_player
+			
+			if path_to_player:
+				_enemy.path = path_to_player
+			else:
+				current_state = State.LOST_PLAYER
+				_enemy._velocity = Vector2.ZERO
+			
+			if OS.is_debug_build():
+				_enemy.path_line.points = path_to_player
+		State.LOST_PLAYER:
+			var path_to_player := _nav_2d.get_simple_path(
+				_enemy.global_position,
+				_player.follow_position_2d.global_position,
+				false
+			)
+			
+			if path_to_player:
+				current_state = State.ATTACK
 		_:
 			print_debug("Enemy state not found")
 

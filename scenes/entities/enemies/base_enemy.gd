@@ -57,8 +57,6 @@ func set_path(value: PoolVector2Array) -> void:
 	if not value:
 		return
 	should_move_along_path = true
-	if OS.is_debug_build():
-		path_line.points = path
 
 
 func _move_along_path() -> void:
