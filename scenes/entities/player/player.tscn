@@ -53,6 +53,9 @@ offset = Vector2( 35, 0 )
 [node name="ShootPos" type="Position2D" parent="Gun"]
 position = Vector2( 65, 0 )
 
+[node name="FollowPosition" type="Position2D" parent="."]
+position = Vector2( 0, 4 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hurt = SubResource( 2 )
 

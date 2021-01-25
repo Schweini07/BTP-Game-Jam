@@ -13,6 +13,7 @@ onready var debug_canvas: CanvasLayer = $Debug
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var gun: Sprite = $Gun
 onready var anim_player: AnimationPlayer = $AnimationPlayer
+onready var follow_position_2d: Position2D = $FollowPosition
 
 
 func _process(_delta: float) -> void:

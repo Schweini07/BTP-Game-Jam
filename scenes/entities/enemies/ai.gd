@@ -37,7 +37,9 @@ func _physics_process(_delta: float) -> void:
 				return
 
 			var path_to_player := _nav_2d.get_simple_path(
-				_enemy.global_position, _player.global_position, false
+				_enemy.global_position,
+				_player.follow_position_2d.global_position,
+				false
 			)
 			_enemy.path = path_to_player
 		_:
