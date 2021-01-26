@@ -9,7 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
+"base": "Node",
+"class": "AIState",
+"language": "GDScript",
+"path": "res://scenes/entities/enemies/ai/states/ai_state.gd"
+}, {
+"base": "BaseEntity",
 "class": "BaseEnemy",
 "language": "GDScript",
 "path": "res://scenes/entities/enemies/base_enemy.gd"
@@ -24,12 +29,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/particle_systems/particle_system.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "BaseEntity",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scenes/entities/player/player.gd"
 } ]
 _global_script_class_icons={
+"AIState": "",
 "BaseEnemy": "",
 "BaseEntity": "",
 "ParticleSystem": "",
