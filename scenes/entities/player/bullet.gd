@@ -30,5 +30,5 @@ func _on_Bullet_body_entered(_body: TileMap) -> void:
 
 
 func _on_Bullet_area_entered(area: Area2D) -> void:
-	coll.call_deferred("set", "disabled", true)
+	call_deferred("queue_free")
 	area.emit_signal("hitbox_activated", BULLET_DAMAGE)
