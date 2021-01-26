@@ -28,6 +28,9 @@ func shoot() -> void:
 	shoot_cooldown.start()
 	can_shoot = false
 	
+	if Global.has_no_reload:
+		return
+	
 	if ammo == 0:
 		reloading = true
 		yield(get_tree().create_timer(1), "timeout")

@@ -1,7 +1,9 @@
 extends Control
 
-var upgrade_button : PackedScene = preload("res://scenes/ui/upgrade_button.tscn")
+var main: PackedScene = preload("res://scenes/main.tscn")
+var upgrade_button: PackedScene = preload("res://scenes/ui/upgrade_button.tscn")
 var heart_count = 9
+
 
 onready var grid_container: GridContainer = $MarginContainer/VBoxContainer/MarginContainer/GridContainer
 onready var hearts : HBoxContainer = $MarginContainer/VBoxContainer/Hearts
@@ -28,13 +30,13 @@ func _on_Start_pressed() -> void:
 
 		match id:
 			0: # Speed
-				pass
+				Global.has_speed_upgrade = true
 			1: # Dodge Roll
-				pass
+				Global.has_dodge_roll = true
 			2: # Rapid Bullets
-				pass
+				Global.has_rapid_fire = true
 			3: # No reload
-				pass
+				Global.has_no_reload = true
 			4:
 				pass
 			5:
@@ -47,3 +49,4 @@ func _on_Start_pressed() -> void:
 				pass
 		
 	Global.health = (heart_count+1) * 10
+	get_tree().change_scene_to(main)
