@@ -39,6 +39,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Generator="*res://scripts/dungeon_generator.gd"
+Global="*res://scripts/global.gd"
 
 [display]
 
