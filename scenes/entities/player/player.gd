@@ -1,7 +1,7 @@
 class_name Player
 extends "res://scenes/entities/base_entity/base_entity.gd"
 
-const MAX_SPEED := 240
+var MAX_SPEED := 240
 const ACC := 4000
 const DEACC := 2000
 
@@ -22,6 +22,9 @@ onready var follow_position_2d: Position2D = $FollowPosition
 
 func _ready():
 	Global.camera = camera
+
+	if Global.has_speed_upgrade:
+		MAX_SPEED = 480
 
 
 func _process(_delta: float) -> void:

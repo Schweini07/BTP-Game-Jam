@@ -8,6 +8,9 @@ var vector: Vector2
 onready var anim: AnimationPlayer = $spr/anim
 onready var coll: CollisionShape2D = $coll
 
+func _ready() -> void:
+	if Global.has_rapid_fire:
+		speed = 1000
 
 func _physics_process(delta) -> void:
 	position += vector * speed * delta
