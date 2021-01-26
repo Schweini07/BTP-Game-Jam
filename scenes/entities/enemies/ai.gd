@@ -48,6 +48,7 @@ func _physics_process(_delta: float) -> void:
 			else:
 				current_state = State.LOST_PLAYER
 				_enemy._velocity = Vector2.ZERO
+				_enemy.should_move_along_path = false
 			
 			if OS.is_debug_build():
 				_enemy.path_line.points = path_to_player
