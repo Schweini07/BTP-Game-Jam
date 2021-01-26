@@ -25,6 +25,8 @@ onready var path_line: Line2D = $PathNode/Path
 
 
 func _ready() -> void:
+	anim_sprite.material = anim_sprite.material.duplicate()
+	
 	if not nav_2d_path:
 		print_debug("Tried to initialize AI but no nav_2d_path was found")
 		return
