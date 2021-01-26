@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		offset += new_offset - _last_offset
 		_last_offset = new_offset
 	# Reset the offset when we're done shaking.
-	_timer = _timer - delta
+	_timer -= delta
 	if _timer <= 0:
 		_timer = 0
 		offset -= _last_offset
@@ -49,10 +49,6 @@ func _process(delta: float) -> void:
 
 # Kick off a new screenshake effect.
 func shake(duration: float, frequency: float, amplitude: float) -> void:
-	# Don't interrupt current shake duration
-	if _timer != 0:
-		return
-
 	# Initialize variables.
 	_duration = duration
 	_timer = duration
