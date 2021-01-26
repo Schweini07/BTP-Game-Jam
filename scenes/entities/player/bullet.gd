@@ -24,7 +24,7 @@ func _on_SelfDestroy_timeout() -> void:
 	$spr/anim.play("Explode")
 
 
-func _on_Bullet_body_entered(_body: Node2D) -> void:
+func _on_Bullet_body_entered(_body: TileMap) -> void:
 	explode()
 	$spr/anim.play("Explode")
 
