@@ -22,6 +22,7 @@ tile_data = PoolIntArray( -851977, 0, 262146, -851976, 0, 196610, -917503, 0, 26
 [node name="BaseEnemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 159, 102 )
 nav_2d_path = NodePath("../Navigation2D")
+player_path = NodePath("../Player")
 
 [node name="dungeon" type="Node2D" parent="."]
 script = ExtResource( 6 )

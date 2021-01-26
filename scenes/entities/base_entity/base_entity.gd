@@ -1,7 +1,7 @@
 class_name BaseEntity
 extends KinematicBody2D
 
-var _velocity := Vector2.ZERO
+var velocity := Vector2.ZERO
 var health: float = 100
 
 
@@ -16,7 +16,7 @@ func _pre_apply_movement(_delta: float) -> void:
 
 
 func _apply_movement(_delta: float) -> void:
-	_velocity = move_and_slide(_velocity)
+	velocity = move_and_slide(velocity)
 
 
 func _post_apply_movement(_delta: float) -> void:
