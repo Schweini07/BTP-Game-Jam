@@ -11,8 +11,8 @@ extents = Vector2( 16, 4 )
 
 [node name="Bullet" type="Area2D"]
 scale = Vector2( 0.5, 0.5 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 64
+collision_mask = 2147483665
 script = ExtResource( 2 )
 
 [node name="spr" type="Sprite" parent="."]
@@ -29,5 +29,6 @@ shape = SubResource( 2 )
 [node name="SelfDestroy" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+[connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="timeout" from="SelfDestroy" to="." method="_on_SelfDestroy_timeout"]

@@ -1,6 +1,7 @@
 class_name BaseEnemy
 extends "res://scenes/entities/base_entity/base_entity.gd"
 
+const DEATH_PARTICLES_SCENE = preload("res://scenes/particle_systems/entities/enemies/enemy_death_particles.tscn")
 const SPEED := 200
 
 export (NodePath) var nav_2d_path
@@ -10,6 +11,9 @@ var should_move_along_path := false
 
 onready var ai: Node2D = $AI
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
+onready var anim_player: AnimationPlayer = $AnimationPlayer
+onready var collision_shape: CollisionShape2D = $CollisionShape2D
+onready var hitbox_collision_shape: CollisionShape2D = $Hitbox/CollisionShape2D
 onready var path_line: Line2D = $PathNode/Path
 
 
@@ -63,3 +67,13 @@ func _move_along_path() -> void:
 	var next_point := path[1]
 	var dir = position.direction_to(next_point)
 	_velocity = dir * SPEED
+
+
+func _post_hurt(_damage: float, _is_dead: bool) -> void:
+	if _is_dead:
+		var particles = DEATH_PARTICLES_SCENE.instance()
+		particles.global_position = global_position
+		get_tree().root.add_child(particles)
+		particles.start()
+	else:
+		anim_player.play("hurt")
