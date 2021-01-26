@@ -4,6 +4,13 @@ extends "res://scenes/entities/base_entity/base_entity.gd"
 const DEATH_PARTICLES_SCENE = preload("res://scenes/particle_systems/entities/enemies/enemy_death_particles.tscn")
 const SPEED := 200
 
+const CAMERA_SHAKE_DEATH_DUR := 0.4
+const CAMERA_SHAKE_DEATH_FREQ := 30.0
+const CAMERA_SHAKE_DEATH_AMP := 12.0
+const CAMERA_SHAKE_HIT_DUR := 0.2
+const CAMERA_SHAKE_HIT_FREQ := 10.0
+const CAMERA_SHAKE_HIT_AMP := 4.0
+
 export (NodePath) var nav_2d_path
 
 var path: PoolVector2Array setget set_path
@@ -71,9 +78,13 @@ func _move_along_path() -> void:
 
 func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	if _is_dead:
+		Global.camera.shake(CAMERA_SHAKE_DEATH_DUR, CAMERA_SHAKE_DEATH_FREQ, CAMERA_SHAKE_DEATH_AMP)
+		
 		var particles = DEATH_PARTICLES_SCENE.instance()
 		particles.global_position = global_position
 		get_tree().root.add_child(particles)
 		particles.start()
 	else:
+		Global.camera.shake(CAMERA_SHAKE_HIT_DUR, CAMERA_SHAKE_HIT_FREQ, CAMERA_SHAKE_HIT_AMP)
+		
 		anim_player.play("hurt")

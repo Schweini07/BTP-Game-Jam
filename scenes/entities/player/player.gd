@@ -6,14 +6,22 @@ const ACC := 4000
 const DEACC := 2000
 
 const DEBUG_HURT_DAMAGE := 10
+const DEBUG_SHAKE_DUR := 0.2
+const DEBUG_SHAKE_FREQ := 15.0
+const DEBUG_SHAKE_AMP := 8.0
 
 var was_hurt := false
 
 onready var debug_canvas: CanvasLayer = $Debug
+onready var camera: Camera2D = $Camera2D
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var gun: Sprite = $Gun
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var follow_position_2d: Position2D = $FollowPosition
+
+
+func _ready():
+	Global.camera = camera
 
 
 func _process(_delta: float) -> void:
@@ -26,8 +34,12 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event):
-	if OS.is_debug_build() and event.is_action_pressed("debug_hurt_player"):
+	if not OS.is_debug_build():
+		return
+	if event.is_action_pressed("debug_hurt_player"):
 		hurt(DEBUG_HURT_DAMAGE)
+	if event.is_action_pressed("debug_shake_camera"):
+		camera.shake(DEBUG_SHAKE_DUR, DEBUG_SHAKE_FREQ, DEBUG_SHAKE_AMP)
 
 
 func _pre_apply_movement(delta: float) -> void:
