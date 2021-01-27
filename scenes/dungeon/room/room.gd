@@ -10,7 +10,7 @@ func _ready():
 	add_enemies()
 
 func add_enemies():
-	var enemy_num = (randi()%4+1) * boss_multiplicator 
+	var enemy_num = (randi()%2+1) * boss_multiplicator * ((wh.x * wh.y)/75) + 1
 	var inst
 	for _i in range(enemy_num):
 		inst = load("res://scenes/entities/enemies/base_enemy.tscn").instance()
