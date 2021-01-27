@@ -32,6 +32,10 @@ script = ExtResource( 2 )
 
 [node name="StateAttack" type="Node" parent="."]
 script = ExtResource( 4 )
+
+[node name="CalculatePathTimer" type="Timer" parent="."]
+wait_time = 0.1
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_PlayerDetectionArea_body_entered"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_exited"]
+[connection signal="timeout" from="CalculatePathTimer" to="." method="_on_CalculatePathTimer_timeout"]
