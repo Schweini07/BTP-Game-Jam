@@ -8,7 +8,7 @@
 radius = 100.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 247.646
+radius = 20.0
 
 [node name="AI" type="Node2D"]
 script = ExtResource( 1 )
