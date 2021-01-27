@@ -22,7 +22,7 @@ func add_enemies():
 			randi()%int(wh.x-2)*32+48,
 			randi()%int(wh.y-2)*32+48
 		)
-		while get_node("/root/Main/Navigation2D/TileMap").get_cell(inst.global_position.x/32, inst.global_position.y/32) != 0:
+		while get_node("/root/Main/Navigation2D/TileMap").get_cell((position.x + inst.position.x)/32, (position.y + inst.position.y)/32) != 0:
 			inst.position = Vector2(
 				randi()%int(wh.x-2)*32+48,
 				randi()%int(wh.y-2)*32+48
