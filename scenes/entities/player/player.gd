@@ -1,5 +1,5 @@
 class_name Player
-extends "res://scenes/entities/base_entity/base_entity.gd"
+extends BaseEntity
 
 var MAX_SPEED := 240
 const ACC := 4000
@@ -17,7 +17,7 @@ onready var camera: Camera2D = $Camera2D
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var gun: Sprite = $Gun
 onready var anim_player: AnimationPlayer = $AnimationPlayer
-onready var follow_position_2d: Position2D = $FollowPosition
+onready var follow_position: Position2D = $FollowPosition
 
 
 func _ready():
@@ -29,8 +29,8 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	if OS.is_debug_build():
-		debug_canvas.label_velocity.text = "Velocity: (%.1f, %.1f)" % [_velocity.x, _velocity.y]
-		debug_canvas.label_speed.text = "Speed: %.1f" % _velocity.length()
+		debug_canvas.label_velocity.text = "Velocity: (%.1f, %.1f)" % [velocity.x, velocity.y]
+		debug_canvas.label_speed.text = "Speed: %.1f" % velocity.length()
 		debug_canvas.label_health.text = "Health: %.1f" % health
 
 	gun.look_at(get_global_mouse_position())
@@ -66,8 +66,8 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 
 
 func animate() -> void:
-	if _velocity.length() > 0:
-		anim_sprite.flip_h = _velocity.x < 0
+	if velocity.length() > 0:
+		anim_sprite.flip_h = velocity.x < 0
 		if not was_hurt:
 			anim_sprite.play("run")
 	elif not was_hurt:
@@ -82,13 +82,13 @@ func _get_input() -> Vector2:
 
 
 func _apply_friction(amount: float) -> void:
-	if _velocity.length() > amount:
-		_velocity -= _velocity.normalized() * amount
+	if velocity.length() > amount:
+		velocity -= velocity.normalized() * amount
 	else:
-		_velocity = Vector2.ZERO
+		velocity = Vector2.ZERO
 
 
 func _accelerate(amount: Vector2) -> void:
-	_velocity += amount
-	if _velocity.length() > MAX_SPEED:
-		_velocity = _velocity.clamped(MAX_SPEED)
+	velocity += amount
+	if velocity.length() > MAX_SPEED:
+		velocity = velocity.clamped(MAX_SPEED)
