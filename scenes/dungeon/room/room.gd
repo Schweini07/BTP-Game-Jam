@@ -5,6 +5,10 @@ var box_chance = 6
 var boxes = [load("res://scenes/dungeon/room/boxes/box.tscn")]
 var boss_multiplicator = 1
 
+onready var enemies = $enemies
+#onready var nav_2d = get_node(")
+#onready var player = get_node("/root/Main/Player")
+
 func _ready():
 	add_boxes()
 	add_enemies()
@@ -23,7 +27,9 @@ func add_enemies():
 				randi()%int(wh.x-2)*32+48,
 				randi()%int(wh.y-2)*32+48
 			)
-		$enemies.add_child(inst)
+		inst.nav_2d_path = "/root/Main/Navigation2D"
+		inst.player_path = "/root/Main/Player"
+		enemies.add_child(inst)
 
 func add_boxes():
 	var box_num = wh.x * wh.y * (0.01 * box_chance)

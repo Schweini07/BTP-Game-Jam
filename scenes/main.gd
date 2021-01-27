@@ -5,7 +5,6 @@ var ammo := 24
 var can_shoot: bool = true
 var reloading: bool = false
 
-onready var enemy: KinematicBody2D = $BaseEnemy
 onready var player: KinematicBody2D = $Player
 onready var shoot_pos: Position2D = $Player/Gun/ShootPos
 onready var gun: Sprite = $Player/Gun
