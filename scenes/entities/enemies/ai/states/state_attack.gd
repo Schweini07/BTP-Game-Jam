@@ -30,7 +30,6 @@ func execute(delta: float, enemy: BaseEnemy, ai: Node2D, player: Player, nav_2d:
 		return
 	
 	if not path_to_player:
-		enemy.ai.current_state = enemy.ai.state.DISABLED
 		enemy.velocity = Vector2.ZERO
 		return
 	
