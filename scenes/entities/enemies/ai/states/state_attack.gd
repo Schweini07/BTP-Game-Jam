@@ -1,13 +1,17 @@
 extends AIState
 
 const MAX_DIST_TO_PLAYER := 350.0
-const SPEED := 150.0
+const MIN_SPEED := 130
+const MAX_SPEED = 170
+const ENEMY_AVOID_WEIGHT = 0.1
 
 var path_to_player: PoolVector2Array
 var prev_player_pos: Vector2
 
+onready var speed = rand_range(MIN_SPEED, MAX_SPEED)
 
-func execute(delta: float, enemy: BaseEnemy, ai: Node2D, player: Player, nav_2d: Navigation2D) -> void:
+
+func execute(delta: float, enemy: BaseEnemy, ai: Node2D, player: Player, nav_2d: Navigation2D, nearby_enemies: Array) -> void:
 	var dist_to_player = enemy.global_position.distance_to(player.global_position)
 	if dist_to_player > MAX_DIST_TO_PLAYER:
 		enemy.path_line.points = PoolVector2Array()
@@ -25,7 +29,7 @@ func execute(delta: float, enemy: BaseEnemy, ai: Node2D, player: Player, nav_2d:
 	if OS.is_debug_build():
 		enemy.path_line.points = path_to_player
 	
-	if enemy.global_position.distance_to(player.follow_position.global_position) <= SPEED * delta * 2:
+	if enemy.global_position.distance_to(player.follow_position.global_position) <= speed * delta:
 		enemy.velocity = Vector2.ZERO
 		return
 	
@@ -33,15 +37,21 @@ func execute(delta: float, enemy: BaseEnemy, ai: Node2D, player: Player, nav_2d:
 		enemy.velocity = Vector2.ZERO
 		return
 	
-	follow_path(delta, path_to_player, enemy, player)
+	var dir := get_follow_path_dir(delta, path_to_player, enemy, player)
+	
+	# Avoid nearby enemies
+	for nearby_enemy in nearby_enemies:
+		dir += nearby_enemy.global_position.direction_to(enemy.global_position) * ENEMY_AVOID_WEIGHT
+	
+	enemy.velocity = dir * speed
 
 
-func follow_path(delta: float, path: PoolVector2Array, enemy: BaseEnemy, player: Player) -> void:
+func get_follow_path_dir(delta: float, path: PoolVector2Array, enemy: BaseEnemy, player: Player) -> Vector2:
 	var dir := enemy.global_position.direction_to(path[1])
-	enemy.velocity = dir * SPEED
-	if enemy.global_position.distance_to(path[1]) <= SPEED * delta * 2:
+	if enemy.global_position.distance_to(path[1]) <= speed * delta:
 		path.remove(0)
 		path_to_player = path
 	if path.size() <= 1:
 		enemy.velocity = Vector2.ZERO
 		path_to_player = PoolVector2Array()
+	return dir
