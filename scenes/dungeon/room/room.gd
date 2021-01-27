@@ -6,8 +6,6 @@ var boxes = [load("res://scenes/dungeon/room/boxes/box.tscn")]
 var boss_multiplicator = 1
 
 onready var enemies = $enemies
-#onready var nav_2d = get_node(")
-#onready var player = get_node("/root/Main/Player")
 
 func _ready():
 	add_boxes()
