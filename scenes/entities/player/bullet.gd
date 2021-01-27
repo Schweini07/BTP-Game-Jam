@@ -7,6 +7,8 @@ var vector: Vector2
 
 onready var anim: AnimationPlayer = $spr/anim
 onready var coll: CollisionShape2D = $coll
+onready var queue_free_timer: Timer = $QueueFreeTimer
+
 
 func _ready() -> void:
 	if Global.has_rapid_fire:
@@ -19,8 +21,7 @@ func _physics_process(delta) -> void:
 func explode() -> void:
 	speed = 0
 	coll.call_deferred("set", "disabled", true)
-	yield(get_tree().create_timer(1), "timeout")
-	call_deferred("queue_free")
+	queue_free_timer.start()
 
 
 func _on_SelfDestroy_timeout() -> void:
@@ -35,3 +36,7 @@ func _on_Bullet_body_entered(_body: TileMap) -> void:
 func _on_Bullet_area_entered(area: Area2D) -> void:
 	call_deferred("queue_free")
 	area.emit_signal("hitbox_activated", BULLET_DAMAGE)
+
+
+func _on_QueueFreeTimer_timeout():
+	queue_free()

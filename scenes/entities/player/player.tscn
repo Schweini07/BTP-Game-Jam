@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite_frames/entities/player/spriteframes_player.tres" type="SpriteFrames" id=2]
@@ -9,8 +9,10 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
 
-[sub_resource type="Animation" id=2]
-resource_name = "hurt"
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 8 )
+
+[sub_resource type="Animation" id=3]
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
@@ -55,10 +57,23 @@ offset = Vector2( 35, 0 )
 [node name="ShootPos" type="Position2D" parent="Gun"]
 position = Vector2( 65, 0 )
 
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2( 0, 5 )
+collision_layer = 8
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 2 )
+
 [node name="FollowPosition" type="Position2D" parent="."]
 position = Vector2( 0, 4 )
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hurt = SubResource( 2 )
+anims/hurt = SubResource( 3 )
 
 [node name="Debug" parent="." instance=ExtResource( 3 )]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
