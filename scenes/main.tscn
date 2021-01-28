@@ -33,7 +33,7 @@ current = true
 zoom = Vector2( 8, 8 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 47.7047, 45.4597 )
+position = Vector2( 101.837, 140.563 )
 
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 0.15

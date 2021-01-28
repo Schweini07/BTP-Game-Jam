@@ -90,7 +90,19 @@ func remove_frame(arr):
 func add_frame():
 	for i in range(CHUNKS_NUM.x * CHUNK_SIZE):
 		for j in range(CHUNKS_NUM.y * CHUNK_SIZE):
-			if i == 0 or j == 0:
-				tilemap.set_cell(i, j, 1)
+			if i == 0 and j != 0:
+				tilemap.set_cell(1, j, 1)
+				tilemap.set_cell(0, j, -1)
+			if j == 0 and i != 0:
+				tilemap.set_cell(i, 1, 1)
+				tilemap.set_cell(i, 0, -1)
 			if i == CHUNKS_NUM.x * CHUNK_SIZE - 1 or j == CHUNKS_NUM.y * CHUNK_SIZE - 1:
 				tilemap.set_cell(i, j, 1)
+				tilemap.set_cell(i+1, j+1, -1)
+	
+	tilemap.set_cell(0, 0, -1)
+	tilemap.set_cell(CHUNKS_NUM.x * CHUNK_SIZE, 0, -1)
+	tilemap.set_cell(CHUNKS_NUM.x * CHUNK_SIZE, -1, -1)
+	tilemap.set_cell(-1, CHUNKS_NUM.x * CHUNK_SIZE, -1)
+	tilemap.set_cell(0, CHUNKS_NUM.x * CHUNK_SIZE, -1)
+	
