@@ -78,5 +78,6 @@ anims/hurt = SubResource( 5 )
 [node name="Path" type="Line2D" parent="PathNode"]
 width = 1.0
 default_color = Color( 0.4, 0.4, 1, 0.2 )
+[connection signal="hitbox_activated" from="Hitbox" to="AI" method="_on_Hitbox_hitbox_activated"]
 [connection signal="hitbox_activated" from="Hitbox" to="." method="hurt"]
 [connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]
