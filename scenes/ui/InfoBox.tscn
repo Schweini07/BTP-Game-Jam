@@ -1,0 +1,29 @@
+[gd_scene format=2]
+
+[node name="InfoBox" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.807843, 0.658824, 0.372549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texts" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpgradeName" type="Label" parent="Texts"]
+margin_right = 960.0
+margin_bottom = 14.0
+text = "Upgrade_Name"
+align = 1
+
+[node name="UpgradeName2" type="Label" parent="Texts"]
+margin_top = 18.0
+margin_right = 960.0
+margin_bottom = 66.0
+text = "This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. "
+autowrap = true
