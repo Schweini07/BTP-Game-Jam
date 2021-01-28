@@ -109,5 +109,4 @@ func _on_FlamingBulletsTimer_timeout():
 	hurt(5)
 
 func _on_FlamingBulletsTimeout_timeout():
-	print("sad")
 	flaming_bullets_timer.stop()
