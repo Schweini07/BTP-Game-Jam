@@ -23,11 +23,6 @@ script = ExtResource( 6 )
 
 [node name="rooms" type="Node2D" parent="dungeon"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 3225.53, 1477.03 )
-current = true
-zoom = Vector2( 8, 8 )
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 47.7047, 45.4597 )
 

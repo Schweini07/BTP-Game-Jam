@@ -1,15 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/base_enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite_frames/entities/enemies/spriteframes_big_demon.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://scenes/entities/enemies/ai/ai.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/enemies/hitbox.gd" type="Script" id=4]
-[ext_resource path="res://assets/shaders/flash.shader" type="Shader" id=5]
+[ext_resource path="res://assets/shaders/texture_tint.shader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
+shader_param/tint_color = Color( 1, 1, 1, 1 )
+shader_param/mix_weight = 0.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 5.0
@@ -17,12 +17,14 @@ radius = 5.0
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 14 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "hurt"
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9, 13 )
+
+[sub_resource type="Animation" id=5]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:material:shader_param/flash_modifier")
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/mix_weight")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -60,8 +62,16 @@ script = ExtResource( 4 )
 position = Vector2( 0, 3 )
 shape = SubResource( 3 )
 
+[node name="AttackBox" type="Area2D" parent="."]
+collision_layer = 2147483712
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
+position = Vector2( 0, 3 )
+shape = SubResource( 4 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hurt = SubResource( 4 )
+anims/hurt = SubResource( 5 )
 
 [node name="PathNode" type="Node" parent="."]
 
@@ -69,3 +79,4 @@ anims/hurt = SubResource( 4 )
 width = 1.0
 default_color = Color( 0.4, 0.4, 1, 0.2 )
 [connection signal="hitbox_activated" from="Hitbox" to="." method="hurt"]
+[connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]

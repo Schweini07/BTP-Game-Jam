@@ -134,6 +134,7 @@ debug_shake_camera={
 2d_physics/layer_5="EnemyHitbox"
 2d_physics/layer_6="DoorOpenArea"
 2d_physics/layer_7="Bullets"
+2d_physics/layer_8="EnemyAttackBox"
 
 [rendering]
 

@@ -3,6 +3,8 @@ extends BaseEntity
 
 const DEATH_PARTICLES_SCENE = preload("res://scenes/particle_systems/entities/enemies/enemy_death_particles.tscn")
 
+const DAMAGE := 10
+
 const CAMERA_SHAKE_DEATH_DUR := 0.4
 const CAMERA_SHAKE_DEATH_FREQ := 30.0
 const CAMERA_SHAKE_DEATH_AMP := 12.0
@@ -13,11 +15,11 @@ const CAMERA_SHAKE_HIT_AMP := 4.0
 export (NodePath) var nav_2d_path
 export (NodePath) var player_path
 
+var health := 100
+
 onready var ai: Node2D = $AI
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var anim_player: AnimationPlayer = $AnimationPlayer
-onready var collision_shape: CollisionShape2D = $CollisionShape2D
-onready var hitbox_collision_shape: CollisionShape2D = $Hitbox/CollisionShape2D
 onready var path_line: Line2D = $PathNode/Path
 
 
@@ -59,6 +61,15 @@ func animate() -> void:
 		anim_sprite.play("idle")
 
 
+func hurt(damage: int) -> void:
+	health -= damage
+	var is_dead = false
+	if health <= 0:
+		is_dead = true
+		die()
+	_post_hurt(damage, is_dead)
+
+
 func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	if _is_dead:
 		Global.camera.shake(CAMERA_SHAKE_DEATH_DUR, CAMERA_SHAKE_DEATH_FREQ, CAMERA_SHAKE_DEATH_AMP)
@@ -71,3 +82,11 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 		Global.camera.shake(CAMERA_SHAKE_HIT_DUR, CAMERA_SHAKE_HIT_FREQ, CAMERA_SHAKE_HIT_AMP)
 		
 		anim_player.play("hurt")
+
+
+func die() -> void:
+	queue_free()
+
+
+func _on_AttackBox_area_entered(area):
+	area.get_parent().hurt(DAMAGE)
