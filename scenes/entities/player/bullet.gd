@@ -16,6 +16,9 @@ func _ready() -> void:
 	if Global.has_rapid_fire:
 		speed = 1000
 
+	if Global.has_massive_bullets:
+		scale = Vector2(1, 1)
+
 func _physics_process(delta) -> void:
 	position += vector * speed * delta
 

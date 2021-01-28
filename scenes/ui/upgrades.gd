@@ -44,7 +44,7 @@ func _on_Start_pressed() -> void:
 			6:
 				Global.has_blackhole = true
 			7:
-				pass
+				Global.has_massive_bullets = true
 			8:
 				pass
 		
