@@ -81,7 +81,7 @@ script = ExtResource( 7 )
 script = ExtResource( 3 )
 
 [node name="CalculatePathTimer" type="Timer" parent="BossAI"]
-wait_time = 0.05
+wait_time = 0.1
 
 [node name="SummonEnemyTimer" type="Timer" parent="BossAI"]
 wait_time = 10.0
