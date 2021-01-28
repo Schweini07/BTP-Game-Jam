@@ -9,7 +9,8 @@ onready var enemies = $enemies
 
 func _ready():
 	add_boxes()
-	add_enemies()
+	if position.x > 224 or position.y > 224:
+		add_enemies()
 
 func add_enemies():
 	var enemy_num = (randi()%2+1) * boss_multiplicator * ((wh.x * wh.y)/75) + 1
