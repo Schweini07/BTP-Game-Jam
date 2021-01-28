@@ -106,7 +106,6 @@ func _on_AttackBox_area_entered(area):
 
 func _on_FlamingBulletsTimer_timeout():
 	hurt(5)
-	print(health)
 
 func _on_FlamingBulletsTimeout_timeout():
 	flaming_bullets_timer.stop()
