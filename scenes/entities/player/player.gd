@@ -61,7 +61,7 @@ func _pre_apply_movement(delta: float) -> void:
 	if (Global.has_dash and can_dash and not is_dashing and
 			Input.is_action_just_pressed("dash")):
 		is_dashing = true
-		MAX_SPEED *= 2
+		MAX_SPEED *= 3
 		ACC *= 2
 		dash_duration_timer.start()
 		
@@ -105,6 +105,9 @@ func _accelerate(amount: Vector2) -> void:
 
 
 func hurt(damage: int) -> void:
+	if is_dashing:
+		return
+	
 	Global.health -= damage
 	var is_dead = false
 	if Global.health <= 0:
@@ -134,7 +137,7 @@ func _on_InvincibilityTimer_timeout():
 
 
 func _on_DashDurationTimer_timeout():
-	MAX_SPEED /= 2
+	MAX_SPEED /= 3
 	ACC /= 2
 	can_dash = false
 	is_dashing = false
