@@ -11,5 +11,6 @@ var has_rapid_fire: bool = false
 var has_no_reload: bool = false
 var has_flaming_bullets: bool = false
 var has_immobolizing_bullets: bool = false
+var has_blackhole: bool = false
 
 var ib_timed_out: bool = true
