@@ -39,7 +39,8 @@ func _on_Bullet_body_entered(_body: TileMap) -> void:
 
 
 func _on_Bullet_area_entered(area: Area2D) -> void:
-	call_deferred("queue_free")
+	if !Global.has_ghost_bullets:
+		call_deferred("queue_free")
 	area.emit_signal("hitbox_activated", BULLET_DAMAGE)
 	
 	if is_ib_bullet:
