@@ -1,7 +1,7 @@
 extends Node
 
 var health := 100
-var tutorial: bool = true
+var tutorial: bool = false
 var camera: Camera2D
 
 # Upgrades
