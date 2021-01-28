@@ -42,7 +42,7 @@ func _on_Start_pressed() -> void:
 			5: # Immobolizing Bullets
 				Global.has_immobolizing_bullets = true
 			6:
-				pass
+				Global.has_blackhole = true
 			7:
 				pass
 			8:
