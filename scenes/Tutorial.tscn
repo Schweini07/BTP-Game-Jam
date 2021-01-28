@@ -52,6 +52,5 @@ __meta__ = {
 }
 
 [node name="BaseEnemy" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 784, 96 )
 idle = true
