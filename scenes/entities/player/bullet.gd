@@ -7,7 +7,6 @@ var vector: Vector2
 
 var is_ib_bullet: bool = false
 
-onready var anim: AnimationPlayer = $spr/anim
 onready var coll: CollisionShape2D = $coll
 onready var queue_free_timer: Timer = $QueueFreeTimer
 
@@ -29,13 +28,8 @@ func explode() -> void:
 	queue_free_timer.start()
 
 
-func _on_SelfDestroy_timeout() -> void:
-	$spr/anim.play("Explode")
-
-
 func _on_Bullet_body_entered(_body: TileMap) -> void:
-	explode()
-	$spr/anim.play("Explode")
+	queue_free()
 
 
 func _on_Bullet_area_entered(area: Area2D) -> void:
