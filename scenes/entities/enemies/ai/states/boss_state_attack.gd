@@ -10,6 +10,7 @@ var path_to_player_current: PoolVector2Array
 
 func post_initialize() -> void:
 	ai.calculate_path_timer.start()
+	ai.summon_minions()
 
 
 func pre_stop() -> void:

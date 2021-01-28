@@ -83,6 +83,10 @@ script = ExtResource( 3 )
 [node name="CalculatePathTimer" type="Timer" parent="BossAI"]
 wait_time = 0.05
 
+[node name="SummonEnemyTimer" type="Timer" parent="BossAI"]
+wait_time = 10.0
+autostart = true
+
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
@@ -126,8 +130,9 @@ __meta__ = {
 }
 [connection signal="body_entered" from="BossAI/PlayerDetectionArea" to="BossAI" method="_on_PlayerDetectionArea_body_entered"]
 [connection signal="timeout" from="BossAI/CalculatePathTimer" to="BossAI" method="_on_CalculatePathTimer_timeout"]
-[connection signal="hitbox_activated" from="Hitbox" to="BossAI" method="_on_Hitbox_hitbox_activated"]
+[connection signal="timeout" from="BossAI/SummonEnemyTimer" to="BossAI" method="_on_SummonEnemyTimer_timeout"]
 [connection signal="hitbox_activated" from="Hitbox" to="." method="hurt"]
+[connection signal="hitbox_activated" from="Hitbox" to="BossAI" method="_on_Hitbox_hitbox_activated"]
 [connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]
 [connection signal="timeout" from="FlamingBulletsTimeout" to="." method="_on_FlamingBulletsTimeout_timeout"]
 [connection signal="timeout" from="FlamingBulletsTimer" to="." method="_on_FlamingBulletsTimer_timeout"]

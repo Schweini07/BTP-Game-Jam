@@ -17,11 +17,10 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	
 	if _is_dead:
 		Global.camera.shake(camera_shake_death_dur, camera_shake_death_freq, camera_shake_death_amp)
-		
-		var particles = DEATH_PARTICLES_SCENE.instance()
-		particles.global_position = global_position
-		get_tree().root.add_child(particles)
-		particles.start()
+		spawn_death_particles()
+		for enemy in get_tree().get_nodes_in_group("minions"):
+			enemy.die()
+			enemy.spawn_death_particles()
 	else:
 		Global.camera.shake(camera_shake_hit_dur, camera_shake_hit_freq, camera_shake_hit_amp)
 		

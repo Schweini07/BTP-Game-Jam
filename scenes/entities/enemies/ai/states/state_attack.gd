@@ -1,13 +1,13 @@
 extends AIState
 
 const MAX_DIST_TO_PLAYER := 350.0
-const MIN_SPEED := 130
-const MAX_SPEED = 270
 const ENEMY_AVOID_WEIGHT = 0.2
 const REACHED_PLAYER_MIN_DIST := 10
 
 var path_to_player_original: PoolVector2Array
 var path_to_player_current: PoolVector2Array
+const MIN_SPEED := 130
+const MAX_SPEED := 270
 
 onready var speed = rand_range(MIN_SPEED, MAX_SPEED)
 

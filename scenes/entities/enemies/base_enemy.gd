@@ -95,15 +95,18 @@ func hurt(dmg: int) -> void:
 func _post_hurt(_dmg: float, _is_dead: bool) -> void:
 	if _is_dead:
 		Global.camera.shake(camera_shake_death_dur, camera_shake_death_freq, camera_shake_death_amp)
-		
-		var particles = DEATH_PARTICLES_SCENE.instance()
-		particles.global_position = global_position
-		get_tree().root.add_child(particles)
-		particles.start()
+		spawn_death_particles()
 	else:
 		Global.camera.shake(camera_shake_hit_dur, camera_shake_hit_freq, camera_shake_hit_amp)
 		
 		anim_player.play("hurt")
+
+
+func spawn_death_particles() -> void:
+	var particles = DEATH_PARTICLES_SCENE.instance()
+	particles.global_position = global_position
+	get_tree().root.add_child(particles)
+	particles.start()
 
 
 func die() -> void:
