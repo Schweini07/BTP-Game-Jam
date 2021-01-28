@@ -24,6 +24,7 @@ onready var path_line: Line2D = $PathNode/Path
 
 
 func _ready() -> void:
+	anim_sprite.frame = randi() % anim_sprite.frames.get_frame_count("idle")
 	anim_sprite.material = anim_sprite.material.duplicate()
 	
 	if not nav_2d_path:
