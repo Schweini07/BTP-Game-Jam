@@ -33,9 +33,6 @@ func _ready():
 			Generator.maze = []
 			chunks[i].append(Generator.generate())
 
-	# tmp, so i don't remove mario's test map. you're welcome
-	tilemap.clear()
-
 	draw()
 	add_frame()
 	tilemap.update_bitmask_region()
