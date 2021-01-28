@@ -22,6 +22,8 @@ onready var ai: Node2D = $AI
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var path_line: Line2D = $PathNode/Path
+onready var flaming_bullets_timer: Timer = $FlamingBulletsTimer
+onready var flaming_bullets_timeout: Timer = $FlamingBulletsTimeout
 
 
 func _ready() -> void:
@@ -68,6 +70,12 @@ func animate() -> void:
 
 func hurt(damage: int) -> void:
 	health -= damage
+
+	if Global.has_flaming_bullets and flaming_bullets_timer.is_stopped():
+		flaming_bullets_timer.start()
+		flaming_bullets_timeout.start()
+
+
 	var is_dead = false
 	if health <= 0:
 		is_dead = true
@@ -95,3 +103,10 @@ func die() -> void:
 
 func _on_AttackBox_area_entered(area):
 	area.get_parent().hurt(DAMAGE)
+
+
+func _on_FlamingBulletsTimer_timeout():
+	hurt(5)
+
+func _on_FlamingBulletsTimeout_timeout():
+	flaming_bullets_timer.stop()

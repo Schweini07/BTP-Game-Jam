@@ -37,8 +37,8 @@ func _on_Start_pressed() -> void:
 				Global.has_rapid_fire = true
 			3: # No reload
 				Global.has_no_reload = true
-			4:
-				pass
+			4: # Flaming Bullets
+				Global.has_flaming_bullets = true
 			5:
 				pass
 			6:
