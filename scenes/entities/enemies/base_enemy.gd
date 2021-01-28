@@ -81,8 +81,9 @@ func hurt(damage: int) -> void:
 		flaming_bullets_timer.start()
 		flaming_bullets_timeout.start()
 
-	if Global.has_immobolizing_bullets and Global.can_shoot_ib:
+	if Global.has_immobolizing_bullets and Global.can_shoot_ib and Global.ib_timed_out:
 		Global.can_shoot_ib = false
+		Global.ib_timed_out = false
 		tmp_speed = state_attack.speed
 		state_attack.speed = 0
 		immobolizing_bullets_timer.start()
@@ -129,4 +130,4 @@ func _on_ImmobolizingBulletsTimer_timeout():
 	state_attack.speed = tmp_speed
 	
 func _on_ImmobolizingBulletsTimeout_timeout():
-	Global.can_shoot_ib = true
+	Global.ib_timed_out = true

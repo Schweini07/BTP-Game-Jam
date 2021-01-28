@@ -14,6 +14,10 @@ func _process(delta) -> void:
 	if Input.is_action_pressed("fire"):
 		if can_shoot and !reloading:
 			shoot()
+	if Input.is_action_pressed("RMB"):
+		if can_shoot and !reloading:
+			Global.can_shoot_ib = true
+			shoot()
 
 
 func shoot() -> void:

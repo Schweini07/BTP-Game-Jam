@@ -41,7 +41,6 @@ func _on_Start_pressed() -> void:
 				Global.has_flaming_bullets = true
 			5: # Immobolizing Bullets
 				Global.has_immobolizing_bullets = true
-				Global.can_shoot_ib = true
 			6:
 				pass
 			7:
