@@ -41,12 +41,12 @@ func _on_Start_pressed() -> void:
 				Global.has_flaming_bullets = true
 			5: # Immobolizing Bullets
 				Global.has_immobolizing_bullets = true
-			6:
+			6: # Blackhole
 				Global.has_blackhole = true
-			7:
+			7: # Massive Bullets
 				Global.has_massive_bullets = true
-			8:
-				pass
+			8: # Ghost Bullets
+				Global.has_ghost_bullets = true
 		
 	Global.health = (heart_count+1) * 10
 	get_tree().change_scene_to(main)
