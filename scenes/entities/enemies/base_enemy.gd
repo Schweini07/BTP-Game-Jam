@@ -3,7 +3,7 @@ extends BaseEntity
 
 const DEATH_PARTICLES_SCENE = preload("res://scenes/particle_systems/entities/enemies/enemy_death_particles.tscn")
 
-const DAMAGE := 10
+const DAMAGE := 5
 
 const CAMERA_SHAKE_DEATH_DUR := 0.4
 const CAMERA_SHAKE_DEATH_FREQ := 30.0
