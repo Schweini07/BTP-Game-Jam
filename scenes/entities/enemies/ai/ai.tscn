@@ -34,7 +34,7 @@ script = ExtResource( 2 )
 script = ExtResource( 4 )
 
 [node name="CalculatePathTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.12
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_PlayerDetectionArea_body_entered"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_body_exited"]
