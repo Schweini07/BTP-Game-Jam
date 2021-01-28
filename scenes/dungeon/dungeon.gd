@@ -23,6 +23,11 @@ var neighbors = [
 ]
 
 func _ready():
+	if Global.tutorial:
+		return
+	
+	get_parent().get_node("Tutorial").queue_free()
+	
 	randomize()
 
 	Generator.size = CHUNK_SIZE + 2
@@ -32,9 +37,6 @@ func _ready():
 		for _j in range(CHUNKS_NUM.y):
 			Generator.maze = []
 			chunks[i].append(Generator.generate())
-
-	# tmp, so i don't remove mario's test map. you're welcome
-	tilemap.clear()
 
 	draw()
 	add_frame()
