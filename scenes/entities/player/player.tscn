@@ -76,4 +76,14 @@ one_shot = true
 anims/hurt = SubResource( 3 )
 
 [node name="Debug" parent="." instance=ExtResource( 3 )]
+
+[node name="DashDurationTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
+[connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]
+[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_DashCooldownTimer_timeout"]
