@@ -12,5 +12,4 @@ var has_no_reload: bool = false
 var has_flaming_bullets: bool = false
 var has_immobolizing_bullets: bool = false
 
-var can_shoot_ib: bool = false
 var ib_timed_out: bool = true

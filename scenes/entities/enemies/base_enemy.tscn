@@ -88,13 +88,9 @@ one_shot = true
 [node name="ImmobolizingBulletsTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
-[node name="ImmobolizingBulletsTimeout" type="Timer" parent="."]
-wait_time = 5.0
-[connection signal="hitbox_activated" from="Hitbox" to="." method="hurt"]
 [connection signal="hitbox_activated" from="Hitbox" to="AI" method="_on_Hitbox_hitbox_activated"]
+[connection signal="hitbox_activated" from="Hitbox" to="." method="hurt"]
 [connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]
 [connection signal="timeout" from="FlamingBulletsTimeout" to="." method="_on_FlamingBulletsTimeout_timeout"]
 [connection signal="timeout" from="FlamingBulletsTimer" to="." method="_on_FlamingBulletsTimer_timeout"]
 [connection signal="timeout" from="ImmobolizingBulletsTimer" to="." method="_on_ImmobolizingBulletsTimer_timeout"]
-[connection signal="timeout" from="ImmobolizingBulletsTimeout" to="." method="_on_ImmobolizingBulletsTimeout_timeout"]

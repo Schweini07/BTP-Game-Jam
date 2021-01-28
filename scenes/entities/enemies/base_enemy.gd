@@ -28,7 +28,7 @@ onready var path_line: Line2D = $PathNode/Path
 onready var flaming_bullets_timer: Timer = $FlamingBulletsTimer
 onready var flaming_bullets_timeout: Timer = $FlamingBulletsTimeout
 onready var immobolizing_bullets_timer: Timer = $ImmobolizingBulletsTimer
-onready var immobolizing_bullets_timeout: Timer = $ImmobolizingBulletsTimeout
+onready var immobolizing_bullets_timeout: Timer = get_tree().root.get_node("Main/ImmobolizingBulletsTimeout")
 onready var state_attack: Node = $AI/StateAttack
 
 
@@ -81,15 +81,6 @@ func hurt(damage: int) -> void:
 		flaming_bullets_timer.start()
 		flaming_bullets_timeout.start()
 
-	if Global.has_immobolizing_bullets and Global.can_shoot_ib and Global.ib_timed_out:
-		Global.can_shoot_ib = false
-		Global.ib_timed_out = false
-		tmp_speed = state_attack.speed
-		state_attack.speed = 0
-		immobolizing_bullets_timer.start()
-		immobolizing_bullets_timeout.start()
-
-
 	var is_dead = false
 	if health <= 0:
 		is_dead = true
@@ -114,6 +105,14 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 func die() -> void:
 	queue_free()
 
+func stun() -> void:
+	if Global.has_immobolizing_bullets and Global.ib_timed_out:
+		Global.ib_timed_out = false
+		tmp_speed = state_attack.speed
+		state_attack.speed = 0
+		immobolizing_bullets_timer.start()
+		immobolizing_bullets_timeout.start()
+
 
 func _on_AttackBox_area_entered(area):
 	area.get_parent().hurt(DAMAGE)
@@ -128,6 +127,3 @@ func _on_FlamingBulletsTimeout_timeout():
 
 func _on_ImmobolizingBulletsTimer_timeout():
 	state_attack.speed = tmp_speed
-	
-func _on_ImmobolizingBulletsTimeout_timeout():
-	Global.ib_timed_out = true
