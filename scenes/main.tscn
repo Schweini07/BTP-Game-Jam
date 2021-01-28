@@ -30,4 +30,9 @@ position = Vector2( 47.7047, 45.4597 )
 
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 0.15
+
+[node name="ImmobolizingBulletsTimeout" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 [connection signal="timeout" from="ShootCooldown" to="." method="_on_ShootCooldown_timeout"]
+[connection signal="timeout" from="ImmobolizingBulletsTimeout" to="." method="_on_ImmobolizingBulletsTimeout_timeout"]
