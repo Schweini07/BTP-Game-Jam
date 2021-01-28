@@ -31,8 +31,8 @@ func _on_Start_pressed() -> void:
 		match id:
 			0: # Speed
 				Global.has_speed_upgrade = true
-			1: # Dodge Roll
-				Global.has_dodge_roll = true
+			1: # Dash
+				Global.has_dash = true
 			2: # Rapid Bullets
 				Global.has_rapid_fire = true
 			3: # No reload

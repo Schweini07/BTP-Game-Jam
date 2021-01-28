@@ -2,7 +2,7 @@ class_name Player
 extends BaseEntity
 
 var MAX_SPEED := 240
-const ACC := 4000
+var ACC := 4000
 const DEACC := 2000
 
 const CAMERA_SHAKE_HIT_DUR := 0.4
@@ -16,6 +16,9 @@ const DEBUG_SHAKE_AMP := 8.0
 
 var was_hurt := false
 
+var is_dashing := false # Currently not necessary but may be used in the future
+var can_dash := true
+
 onready var debug_canvas: CanvasLayer = $Debug
 onready var camera: Camera2D = $Camera2D
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
@@ -24,6 +27,8 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var follow_position: Position2D = $FollowPosition
 onready var invincibility_timer: Timer = $InvincibilityTimer
 onready var hitbox_collision_shape: CollisionShape2D = $Hitbox/CollisionShape2D
+onready var dash_duration_timer: Timer = $DashDurationTimer
+onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 
 
 func _ready():
@@ -52,7 +57,14 @@ func _unhandled_input(event):
 
 
 func _pre_apply_movement(delta: float) -> void:
-	var input := _get_input()
+	var input := _get_input_vector()
+	if (Global.has_dash and can_dash and not is_dashing and
+			Input.is_action_just_pressed("dash")):
+		is_dashing = true
+		MAX_SPEED *= 2
+		ACC *= 2
+		dash_duration_timer.start()
+		
 	if input == Vector2.ZERO:
 		_apply_friction(DEACC * delta)
 	else:
@@ -72,7 +84,7 @@ func animate() -> void:
 		anim_sprite.play("idle")
 
 
-func _get_input() -> Vector2:
+func _get_input_vector() -> Vector2:
 	return Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -119,3 +131,15 @@ func die() -> void:
 
 func _on_InvincibilityTimer_timeout():
 	hitbox_collision_shape.set_deferred("disabled", false)
+
+
+func _on_DashDurationTimer_timeout():
+	MAX_SPEED /= 2
+	ACC /= 2
+	can_dash = false
+	is_dashing = false
+	dash_cooldown_timer.start()
+
+
+func _on_DashCooldownTimer_timeout():
+	can_dash = true
