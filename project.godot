@@ -125,6 +125,18 @@ debug_shake_camera={
  ]
 }
 
+RMB={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+blackhole={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+
 [layer_names]
 
 2d_physics/layer_1="Tiles"
@@ -134,7 +146,6 @@ debug_shake_camera={
 2d_physics/layer_5="EnemyHitbox"
 2d_physics/layer_6="DoorOpenArea"
 2d_physics/layer_7="Bullets"
-2d_physics/layer_8="EnemyAttackBox"
 
 [rendering]
 
@@ -142,4 +153,5 @@ quality/driver/driver_name="GLES2"
 quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.258824, 0.156863, 0.207843, 1 )
 environment/default_environment="res://default_env.tres"

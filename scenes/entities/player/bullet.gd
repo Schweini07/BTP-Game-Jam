@@ -5,6 +5,8 @@ const BULLET_DAMAGE := 10.0
 var speed = 500
 var vector: Vector2
 
+var is_ib_bullet: bool = false
+
 onready var anim: AnimationPlayer = $spr/anim
 onready var coll: CollisionShape2D = $coll
 onready var queue_free_timer: Timer = $QueueFreeTimer
@@ -13,6 +15,9 @@ onready var queue_free_timer: Timer = $QueueFreeTimer
 func _ready() -> void:
 	if Global.has_rapid_fire:
 		speed = 1000
+
+	if Global.has_massive_bullets:
+		scale = Vector2(1, 1)
 
 func _physics_process(delta) -> void:
 	position += vector * speed * delta
@@ -36,7 +41,9 @@ func _on_Bullet_body_entered(_body: TileMap) -> void:
 func _on_Bullet_area_entered(area: Area2D) -> void:
 	call_deferred("queue_free")
 	area.emit_signal("hitbox_activated", BULLET_DAMAGE)
-
+	
+	if is_ib_bullet:
+		area.get_parent().stun()
 
 func _on_QueueFreeTimer_timeout():
 	queue_free()

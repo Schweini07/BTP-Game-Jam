@@ -19,6 +19,8 @@ compatibility_mode = true
 collision_mask = 0
 format = 1
 
+[node name="BlackholeParent" type="Node2D" parent="."]
+
 [node name="Tutorial" parent="." instance=ExtResource( 1 )]
 
 [node name="dungeon" type="Node2D" parent="."]
@@ -27,7 +29,7 @@ script = ExtResource( 6 )
 [node name="rooms" type="Node2D" parent="dungeon"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 47.7047, 45.4597 )
+position = Vector2( 96.9697, 119.092 )
 
 [node name="BossEnemy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 913.218, 126.607 )
@@ -36,4 +38,14 @@ player_path = NodePath("../Player")
 
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 0.15
+
+[node name="ImmobolizingBulletsTimeout" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="BlackholeTimeout" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
 [connection signal="timeout" from="ShootCooldown" to="." method="_on_ShootCooldown_timeout"]
+[connection signal="timeout" from="ImmobolizingBulletsTimeout" to="." method="_on_ImmobolizingBulletsTimeout_timeout"]
+[connection signal="timeout" from="BlackholeTimeout" to="." method="_on_BlackholeTimeout_timeout"]

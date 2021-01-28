@@ -39,12 +39,12 @@ func _on_Start_pressed() -> void:
 				Global.has_no_reload = true
 			4: # Flaming Bullets
 				Global.has_flaming_bullets = true
-			5:
-				pass
+			5: # Immobolizing Bullets
+				Global.has_immobolizing_bullets = true
 			6:
-				pass
+				Global.has_blackhole = true
 			7:
-				pass
+				Global.has_massive_bullets = true
 			8:
 				pass
 		
