@@ -1,5 +1,8 @@
 extends Node
 
+signal normal_enemy_killed
+signal kill_criteria_reached
+
 var health := 100
 var tutorial: bool = false
 var camera: Camera2D

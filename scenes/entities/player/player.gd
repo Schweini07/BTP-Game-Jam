@@ -1,6 +1,8 @@
 class_name Player
 extends BaseEntity
 
+signal hurt
+
 var MAX_SPEED := 240
 var ACC := 4000
 const DEACC := 2000
@@ -113,6 +115,7 @@ func hurt(damage: int) -> void:
 	if Global.health <= 0:
 		is_dead = true
 		die()
+	emit_signal("hurt")
 	_post_hurt(damage, is_dead)
 
 
