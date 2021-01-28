@@ -126,6 +126,8 @@ func generate():
 			room.pos = Vector2(i, j) * room_frequency
 			room.maze = maze
 			room.generate()
+			if not room.size:
+				break
 			maze = room.add_to_maze()
 			rooms.append(room)
 
