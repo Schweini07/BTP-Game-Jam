@@ -1,5 +1,7 @@
 extends Node2D
 
+const MAX_ENEMIES_ATTACKING := 6
+
 var is_initialized := false
 
 var _enemy: BaseEnemy = null
@@ -43,7 +45,9 @@ func execute(delta: float) -> void:
 
 func _on_PlayerDetectionArea_body_entered(body: Node) -> void:
 	if body.is_in_group("player") and is_initialized:
-		self.current_state = state.ATTACK
+		var num_enemies_attacking := get_tree().get_nodes_in_group("enemies_attacking")
+		if len(num_enemies_attacking) < MAX_ENEMIES_ATTACKING:
+			self.current_state = state.ATTACK
 
 
 func _on_EnemyDetectionArea_body_entered(body):
@@ -68,4 +72,6 @@ func _on_CalculatePathTimer_timeout():
 
 
 func _on_Hitbox_hitbox_activated(_damage):
-	self.current_state = state.ATTACK
+	var num_enemies_attacking := get_tree().get_nodes_in_group("enemies_attacking")
+	if len(num_enemies_attacking) < MAX_ENEMIES_ATTACKING:
+		self.current_state = state.ATTACK

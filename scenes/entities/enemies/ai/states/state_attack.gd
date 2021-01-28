@@ -1,6 +1,6 @@
 extends AIState
 
-const MAX_DIST_TO_PLAYER := 350.0
+const MAX_DIST_TO_PLAYER := 200.0
 const ENEMY_AVOID_WEIGHT = 0.2
 const REACHED_PLAYER_MIN_DIST := 10
 
@@ -14,6 +14,7 @@ onready var speed = rand_range(MIN_SPEED, MAX_SPEED)
 
 func post_initialize() -> void:
 	ai.calculate_path_timer.start()
+	enemy.add_to_group("enemies_attacking")
 
 
 func pre_stop() -> void:
