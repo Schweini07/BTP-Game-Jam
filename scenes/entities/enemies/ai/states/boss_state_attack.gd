@@ -1,26 +1,23 @@
 extends AIState
 
-const MAX_DIST_TO_PLAYER := 350.0
-const ENEMY_AVOID_WEIGHT = 0.2
+const MAX_DIST_TO_PLAYER := 500.0
+const SPEED = 230
 const REACHED_PLAYER_MIN_DIST := 10
 
 var path_to_player_original: PoolVector2Array
 var path_to_player_current: PoolVector2Array
-const MIN_SPEED := 130
-const MAX_SPEED := 270
-
-onready var speed = rand_range(MIN_SPEED, MAX_SPEED)
 
 
 func post_initialize() -> void:
 	ai.calculate_path_timer.start()
+	ai.summon_minions()
 
 
 func pre_stop() -> void:
 	ai.calculate_path_timer.stop()
 
 
-func execute(delta: float, path: PoolVector2Array, nearby_enemies: Array) -> void:
+func execute(delta: float, path: PoolVector2Array, _nearby_enemies: Array) -> void:
 	var dist_to_player = enemy.global_position.distance_to(player.global_position)
 	if dist_to_player > MAX_DIST_TO_PLAYER:
 		enemy.path_line.points = PoolVector2Array()
@@ -43,16 +40,12 @@ func execute(delta: float, path: PoolVector2Array, nearby_enemies: Array) -> voi
 	
 	var dir := get_follow_path_dir(delta, path_to_player_current, enemy)
 	
-	# Avoid nearby enemies
-	for nearby_enemy in nearby_enemies:
-		dir += nearby_enemy.global_position.direction_to(enemy.global_position) * ENEMY_AVOID_WEIGHT
-	
-	enemy.velocity = dir * speed
+	enemy.velocity = dir * SPEED
 
 
 func get_follow_path_dir(delta: float, path: PoolVector2Array, enemy: BaseEnemy) -> Vector2:
 	var dir := enemy.global_position.direction_to(path[1])
-	if enemy.global_position.distance_to(path[1]) <= speed * delta:
+	if enemy.global_position.distance_to(path[1]) <= SPEED * delta:
 		path.remove(0)
 		path_to_player_current = path
 	if path.size() <= 1:

@@ -3,25 +3,25 @@ extends BaseEntity
 
 const DEATH_PARTICLES_SCENE = preload("res://scenes/particle_systems/entities/enemies/enemy_death_particles.tscn")
 
-const DAMAGE := 5
-
-const CAMERA_SHAKE_DEATH_DUR := 0.4
-const CAMERA_SHAKE_DEATH_FREQ := 30.0
-const CAMERA_SHAKE_DEATH_AMP := 12.0
-const CAMERA_SHAKE_HIT_DUR := 0.2
-const CAMERA_SHAKE_HIT_FREQ := 10.0
-const CAMERA_SHAKE_HIT_AMP := 4.0
-
 export (NodePath) var nav_2d_path
 export (NodePath) var player_path
 export (bool) var idle
+export var health := 100
+export var damage := 5
 
-var health := 100
+export var camera_shake_death_dur := 0.4
+export var camera_shake_death_freq := 30.0
+export var camera_shake_death_amp := 12.0
+
+export var camera_shake_hit_dur := 0.2
+export var camera_shake_hit_freq := 10.0
+export var camera_shake_hit_amp := 4.0
+
+var ai: Node2D
 
 # needed for immobolizing bullets
 var tmp_speed : int
 
-onready var ai: Node2D = $AI
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var path_line: Line2D = $PathNode/Path
@@ -29,10 +29,11 @@ onready var flaming_bullets_timer: Timer = $FlamingBulletsTimer
 onready var flaming_bullets_timeout: Timer = $FlamingBulletsTimeout
 onready var immobolizing_bullets_timer: Timer = $ImmobolizingBulletsTimer
 onready var immobolizing_bullets_timeout: Timer = get_tree().root.get_node("Main/ImmobolizingBulletsTimeout")
-onready var state_attack: Node = $AI/StateAttack
 
 
 func _ready() -> void:
+	_pre_ready()
+	
 	anim_sprite.frame = randi() % anim_sprite.frames.get_frame_count("idle")
 	anim_sprite.material = anim_sprite.material.duplicate()
 	
@@ -59,6 +60,10 @@ func _ready() -> void:
 	ai.initialize(self, player_node, nav_2d_node)
 
 
+func _pre_ready() -> void:
+	ai = $AI
+
+
 func _pre_apply_movement(delta: float) -> void:
 	if idle:
 		return
@@ -77,8 +82,8 @@ func animate() -> void:
 		anim_sprite.play("idle")
 
 
-func hurt(damage: int) -> void:
-	health -= damage
+func hurt(dmg: int) -> void:
+	health -= dmg
 
 	if Global.has_flaming_bullets and flaming_bullets_timer.is_stopped():
 		flaming_bullets_timer.start()
@@ -88,21 +93,24 @@ func hurt(damage: int) -> void:
 	if health <= 0:
 		is_dead = true
 		die()
-	_post_hurt(damage, is_dead)
+	_post_hurt(dmg, is_dead)
 
 
-func _post_hurt(_damage: float, _is_dead: bool) -> void:
+func _post_hurt(_dmg: float, _is_dead: bool) -> void:
 	if _is_dead:
-		Global.camera.shake(CAMERA_SHAKE_DEATH_DUR, CAMERA_SHAKE_DEATH_FREQ, CAMERA_SHAKE_DEATH_AMP)
-		
-		var particles = DEATH_PARTICLES_SCENE.instance()
-		particles.global_position = global_position
-		get_tree().root.add_child(particles)
-		particles.start()
+		Global.camera.shake(camera_shake_death_dur, camera_shake_death_freq, camera_shake_death_amp)
+		spawn_death_particles()
 	else:
-		Global.camera.shake(CAMERA_SHAKE_HIT_DUR, CAMERA_SHAKE_HIT_FREQ, CAMERA_SHAKE_HIT_AMP)
+		Global.camera.shake(camera_shake_hit_dur, camera_shake_hit_freq, camera_shake_hit_amp)
 		
 		anim_player.play("hurt")
+
+
+func spawn_death_particles() -> void:
+	var particles = DEATH_PARTICLES_SCENE.instance()
+	particles.global_position = global_position
+	get_tree().root.add_child(particles)
+	particles.start()
 
 
 func die() -> void:
@@ -111,14 +119,14 @@ func die() -> void:
 func stun() -> void:
 	if Global.has_immobolizing_bullets and Global.ib_timed_out:
 		Global.ib_timed_out = false
-		tmp_speed = state_attack.speed
-		state_attack.speed = 0
+		tmp_speed = ai.state.ATTACK.speed
+		ai.state.ATTACK.speed = 0
 		immobolizing_bullets_timer.start()
 		immobolizing_bullets_timeout.start()
 
 
 func _on_AttackBox_area_entered(area):
-	area.get_parent().hurt(DAMAGE)
+	area.get_parent().hurt(damage)
 
 
 func _on_FlamingBulletsTimer_timeout():
@@ -129,4 +137,4 @@ func _on_FlamingBulletsTimeout_timeout():
 
 
 func _on_ImmobolizingBulletsTimer_timeout():
-	state_attack.speed = tmp_speed
+	ai.state.ATTACK.speed = tmp_speed
