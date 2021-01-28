@@ -24,6 +24,12 @@ func _physics_process(delta) -> void:
 	
 	if Input.is_action_just_pressed("blackhole") and can_use_blackhole and Global.has_blackhole:
 		create_blackhole()
+	
+	if Input.is_action_just_pressed("reload") and !Global.has_no_reload:
+		reloading = true
+		yield(get_tree().create_timer(1), "timeout")
+		reloading = false
+		ammo = 24
 
 
 func shoot(var use_ib : bool) -> void:
