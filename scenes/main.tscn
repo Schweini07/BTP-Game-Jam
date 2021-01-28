@@ -28,7 +28,7 @@ script = ExtResource( 6 )
 [node name="rooms" type="Node2D" parent="dungeon"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 96.9697, 119.092 )
+position = Vector2( 80, 80 )
 
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 0.15
