@@ -29,7 +29,6 @@ onready var flaming_bullets_timer: Timer = $FlamingBulletsTimer
 onready var flaming_bullets_timeout: Timer = $FlamingBulletsTimeout
 onready var immobolizing_bullets_timer: Timer = $ImmobolizingBulletsTimer
 onready var immobolizing_bullets_timeout: Timer = get_tree().root.get_node("Main/ImmobolizingBulletsTimeout")
-onready var state_attack: Node = $AI/StateAttack
 
 
 func _ready() -> void:
@@ -120,8 +119,8 @@ func die() -> void:
 func stun() -> void:
 	if Global.has_immobolizing_bullets and Global.ib_timed_out:
 		Global.ib_timed_out = false
-		tmp_speed = state_attack.speed
-		state_attack.speed = 0
+		tmp_speed = ai.state.ATTACK.speed
+		ai.state.ATTACK.speed = 0
 		immobolizing_bullets_timer.start()
 		immobolizing_bullets_timeout.start()
 
@@ -138,4 +137,4 @@ func _on_FlamingBulletsTimeout_timeout():
 
 
 func _on_ImmobolizingBulletsTimer_timeout():
-	state_attack.speed = tmp_speed
+	ai.state.ATTACK.speed = tmp_speed

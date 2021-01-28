@@ -118,6 +118,10 @@ wait_time = 5.0
 
 [node name="FlamingBulletsTimer" type="Timer" parent="."]
 
+[node name="ImmobolizingBulletsTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="HealthBar" type="TextureProgress" parent="."]
 margin_left = -12.0
 margin_top = -17.0
@@ -136,3 +140,4 @@ __meta__ = {
 [connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]
 [connection signal="timeout" from="FlamingBulletsTimeout" to="." method="_on_FlamingBulletsTimeout_timeout"]
 [connection signal="timeout" from="FlamingBulletsTimer" to="." method="_on_FlamingBulletsTimer_timeout"]
+[connection signal="timeout" from="ImmobolizingBulletsTimer" to="." method="_on_ImmobolizingBulletsTimer_timeout"]
