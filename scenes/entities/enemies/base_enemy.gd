@@ -18,12 +18,18 @@ export (bool) var idle
 
 var health := 100
 
+# needed for immobolizing bullets
+var tmp_speed : int
+
 onready var ai: Node2D = $AI
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var path_line: Line2D = $PathNode/Path
 onready var flaming_bullets_timer: Timer = $FlamingBulletsTimer
 onready var flaming_bullets_timeout: Timer = $FlamingBulletsTimeout
+onready var immobolizing_bullets_timer: Timer = $ImmobolizingBulletsTimer
+onready var immobolizing_bullets_timeout: Timer = $ImmobolizingBulletsTimeout
+onready var state_attack: Node = $AI/StateAttack
 
 
 func _ready() -> void:
@@ -75,6 +81,13 @@ func hurt(damage: int) -> void:
 		flaming_bullets_timer.start()
 		flaming_bullets_timeout.start()
 
+	if Global.has_immobolizing_bullets and Global.can_shoot_ib:
+		Global.can_shoot_ib = false
+		tmp_speed = state_attack.speed
+		state_attack.speed = 0
+		immobolizing_bullets_timer.start()
+		immobolizing_bullets_timeout.start()
+
 
 	var is_dead = false
 	if health <= 0:
@@ -110,3 +123,10 @@ func _on_FlamingBulletsTimer_timeout():
 
 func _on_FlamingBulletsTimeout_timeout():
 	flaming_bullets_timer.stop()
+
+
+func _on_ImmobolizingBulletsTimer_timeout():
+	state_attack.speed = tmp_speed
+	
+func _on_ImmobolizingBulletsTimeout_timeout():
+	Global.can_shoot_ib = true
