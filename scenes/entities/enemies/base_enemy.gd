@@ -14,6 +14,7 @@ const CAMERA_SHAKE_HIT_AMP := 4.0
 
 export (NodePath) var nav_2d_path
 export (NodePath) var player_path
+export (bool) var idle
 
 var health := 100
 
@@ -25,6 +26,9 @@ onready var path_line: Line2D = $PathNode/Path
 
 func _ready() -> void:
 	anim_sprite.material = anim_sprite.material.duplicate()
+	
+	if idle:
+		return
 	
 	if not nav_2d_path:
 		push_error("Tried to initialize AI but no nav_2d_path was found")
