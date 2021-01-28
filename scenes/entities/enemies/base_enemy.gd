@@ -114,6 +114,7 @@ func spawn_death_particles() -> void:
 
 
 func die() -> void:
+	Global.emit_signal("normal_enemy_killed")
 	queue_free()
 
 func stun() -> void:
