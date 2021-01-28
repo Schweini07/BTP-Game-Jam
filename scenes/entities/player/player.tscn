@@ -78,7 +78,7 @@ anims/hurt = SubResource( 3 )
 [node name="Debug" parent="." instance=ExtResource( 3 )]
 
 [node name="DashDurationTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
