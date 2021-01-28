@@ -5,8 +5,8 @@ var upgrade_button: PackedScene = preload("res://scenes/ui/upgrade_button.tscn")
 var heart_count = 9
 
 
-onready var grid_container: GridContainer = $MarginContainer/VBoxContainer/MarginContainer/GridContainer
-onready var hearts : HBoxContainer = $MarginContainer/VBoxContainer/Hearts
+onready var grid_container: GridContainer = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/GridContainer
+onready var hearts : HBoxContainer = $MarginContainer/HBoxContainer/VBoxContainer/Hearts
 
 
 func _ready() -> void:
