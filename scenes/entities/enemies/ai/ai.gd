@@ -65,3 +65,7 @@ func _on_CalculatePathTimer_timeout():
 	
 	if OS.is_debug_build():
 		_enemy.path_line.points = _path_to_player
+
+
+func _on_Hitbox_hitbox_activated(_damage):
+	self.current_state = state.ATTACK

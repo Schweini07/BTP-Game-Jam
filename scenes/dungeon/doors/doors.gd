@@ -8,8 +8,7 @@ func _ready():
 	tilemap.set_cell(pos.x, pos.y, 5)
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("player"):
-		tilemap.set_cell(pos.x, pos.y, 4)
+	tilemap.set_cell(pos.x, pos.y, 4)
 
 
 func _on_Area2D_body_exited(body):
