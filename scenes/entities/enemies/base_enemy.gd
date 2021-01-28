@@ -70,11 +70,12 @@ func animate() -> void:
 
 func hurt(damage: int) -> void:
 	health -= damage
-	
+
 	if Global.has_flaming_bullets and flaming_bullets_timer.is_stopped():
 		flaming_bullets_timer.start()
-	
-	
+		flaming_bullets_timeout.start()
+
+
 	var is_dead = false
 	if health <= 0:
 		is_dead = true
@@ -108,4 +109,5 @@ func _on_FlamingBulletsTimer_timeout():
 	hurt(5)
 
 func _on_FlamingBulletsTimeout_timeout():
+	print("sad")
 	flaming_bullets_timer.stop()
