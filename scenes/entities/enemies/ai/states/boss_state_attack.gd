@@ -1,6 +1,5 @@
 extends AIState
 
-const MAX_DIST_TO_PLAYER := 500.0
 const SPEED = 230
 const REACHED_PLAYER_MIN_DIST := 10
 
@@ -18,13 +17,6 @@ func pre_stop() -> void:
 
 
 func execute(delta: float, path: PoolVector2Array, _nearby_enemies: Array) -> void:
-	var dist_to_player = enemy.global_position.distance_to(player.global_position)
-	if dist_to_player > MAX_DIST_TO_PLAYER:
-		enemy.path_line.points = PoolVector2Array()
-		enemy.velocity = Vector2.ZERO
-		enemy.ai.current_state = enemy.ai.state.DISABLED
-		return
-	
 	if not path:
 		enemy.velocity = Vector2.ZERO
 		return
