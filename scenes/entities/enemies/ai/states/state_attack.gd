@@ -1,6 +1,6 @@
 extends AIState
 
-const MAX_DIST_TO_PLAYER := 200.0
+const MAX_DIST_TO_PLAYER := 300.0
 const ENEMY_AVOID_WEIGHT = 0.2
 const REACHED_PLAYER_MIN_DIST := 10
 
