@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/ui/Menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/I-pixel-u.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/joystix monospace.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 32
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -37,7 +37,7 @@ margin_bottom = 340.0
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 560.0
-margin_bottom = 80.0
+margin_bottom = 39.0
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 1 )
 text = "Working Title"
@@ -45,7 +45,7 @@ align = 1
 valign = 1
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
-margin_top = 84.0
+margin_top = 43.0
 margin_right = 560.0
 margin_bottom = 230.0
 size_flags_vertical = 3

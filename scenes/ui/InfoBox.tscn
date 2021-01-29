@@ -1,4 +1,16 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/joystix monospace.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = ExtResource( 2 )
 
 [node name="InfoBox" type="ColorRect"]
 anchor_right = 1.0
@@ -17,11 +29,15 @@ __meta__ = {
 
 [node name="UpgradeName" type="Label" parent="Texts"]
 margin_right = 960.0
-margin_bottom = 14.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
 align = 1
+autowrap = true
 
 [node name="Info" type="Label" parent="Texts"]
-margin_top = 18.0
+margin_top = 28.0
 margin_right = 960.0
-margin_bottom = 32.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 2 )
 autowrap = true
