@@ -36,7 +36,7 @@ func increment_kill_counter():
 	num_kills += 1
 	if num_kills == 40:
 		Global.emit_signal("kill_criteria_reached")
-	kill_counter_label.text = "%d/30" % num_kills
+	kill_counter_label.text = "%d/40" % num_kills
 
 func start_blackhole_cooldown() -> void:
 	blackhole_cooldown_used = true
