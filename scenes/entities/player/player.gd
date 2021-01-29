@@ -129,6 +129,7 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	if _is_dead: # TODO: Player death SFX
 		pass
 	else:
+		player_hurt_sfx.pitch_scale = rand_range(0.9, 1.1)
 		player_hurt_sfx.play()
 	anim_sprite.play("hurt")
 	anim_player.play("hurt")
