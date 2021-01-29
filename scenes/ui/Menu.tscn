@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/ui/Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/joystix monospace.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/graphics/ui/main_menu_bg.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 32
+size = 30
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -31,23 +32,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -476.825
+margin_top = -265.238
+margin_right = 483.175
+margin_bottom = 274.762
+texture = ExtResource( 3 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -113.0
+margin_right = 150.0
+margin_bottom = 113.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 960.0
-margin_bottom = 540.0
-custom_constants/separation = 50
+margin_right = 300.0
+margin_bottom = 226.0
+custom_constants/separation = 110
 alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 185.0
-margin_right = 960.0
-margin_bottom = 224.0
+margin_right = 300.0
+margin_bottom = 36.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
 text = "Working name"
@@ -55,13 +76,12 @@ align = 1
 valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_left = 380.0
-margin_top = 274.0
-margin_right = 580.0
-margin_bottom = 354.0
+margin_left = 50.0
+margin_top = 146.0
+margin_right = 250.0
+margin_bottom = 226.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Start" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_right = 200.0
