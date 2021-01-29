@@ -10,14 +10,14 @@ onready var info_box: ColorRect = $MarginContainer/HBoxContainer/InfoBox
 
 var titles = ["Speed", "Dash", "Rapid Fire", "No Reload", "Flaming Bullets", "Immobolizing Bullets", "Blackhole", "Massive Bullets", "Ghost Bullets"]
 var infos = ["Doubles your running speed. Excellent if you want to rush through the dungeon. But beware, the controls get more slippery!",
-"Press 'Space' to dash. While you are dashing you gain immunity to all enemy damage. Perfect to escape hairy situations.",
+"Press 'Space' to dash. While you are dashing you gain immunity to all enemy damage. Perfect to escape hairy situations. Has a cooldown of 3 seconds.",
 "Doubles the speed of your bullets. If you are good at aiming, you can double your damage!",
 "Your ammo always stays the same, you will never have to worry that you can't shoot in troublesome situations anymore.",
 "If you hit an enemy with a bullet, it will receive damage every second for 5 seconds. Perfect if you prefer fighting from a distance.",
-"Press the Right Mouse Button to shoot an immobolizing bullet which stuns an enemy for 2 seconds. But beware, there's a cooldown of 5 seconds for using it.",
-"Press 'Shift' to create a blackhole where your mouse position is currently at. It sucks all enemies in its surroundings into itself, so you can shoot them at a safe distance.",
+"Press the Right Mouse Button to shoot an immobolizing bullet which stuns an enemy for 2 seconds. But beware, there's a cooldown of 5 seconds for it.",
+"Press 'Shift' to create a blackhole where your mouse position is currently at. It sucks all enemies in its surroundings into itself, so you can shoot them at a safe distance. Has a cooldown of 20 seconds.",
 "Makes your bullets bigger. If you aren't good at aiming, this is the upgrade for you!",
-"Bullets fly through enemies, hurting them and those behind. But beware, the bullets will vanish after only one second!"]
+"Bullets fly through enemies, hurting them and those behind."]
 var icons = ["res://assets/graphics/ui/upgrade_icons/speed.png", "res://assets/graphics/ui/upgrade_icons/dash.png", 
 "res://assets/graphics/ui/upgrade_icons/rapid_bullets.png", "res://assets/graphics/ui/upgrade_icons/no_reload.png",
 "res://assets/graphics/ui/upgrade_icons/flaming_bullets.png", "res://assets/graphics/ui/upgrade_icons/immobilization_bullets.png",
