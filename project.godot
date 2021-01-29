@@ -47,6 +47,7 @@ _global_script_class_icons={
 config/name="Life Sacrificer"
 run/main_scene="res://scenes/ui/Menu.tscn"
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
