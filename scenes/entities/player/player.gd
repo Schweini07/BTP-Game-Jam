@@ -33,8 +33,12 @@ onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 onready var gun_shot_sfx: AudioStreamPlayer2D = $GunShotSFX
 onready var player_hurt_sfx: AudioStreamPlayer2D = $PlayerHurtSFX
 
+var run_anim
+var idle_anim
+var hurt_anim
 
 func _ready():
+	update_animations()
 	Global.camera = camera
 
 	if Global.has_speed_upgrade:
@@ -78,9 +82,9 @@ func animate() -> void:
 	if velocity.length() > 0:
 		anim_sprite.flip_h = velocity.x < 0
 		if not was_hurt:
-			anim_sprite.play("run")
+			anim_sprite.play(run_anim)
 	elif not was_hurt:
-		anim_sprite.play("idle")
+		anim_sprite.play(idle_anim)
 
 
 func _get_input_vector() -> Vector2:
@@ -126,11 +130,21 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	else:
 		player_hurt_sfx.pitch_scale = rand_range(0.9, 1.1)
 		player_hurt_sfx.play()
-	anim_sprite.play("hurt")
+	anim_sprite.play(hurt_anim)
 	anim_player.play("hurt")
 	yield(anim_sprite, "animation_finished")
 	was_hurt = false
 
+
+func update_animations() -> void:
+	var anim_map = {
+		false: ["run", "idle", "hurt"],
+		true: ["run_hat", "idle_hat", "hurt_hat"],
+	}
+	
+	run_anim = anim_map[Global.has_hat][0]
+	idle_anim = anim_map[Global.has_hat][1]
+	hurt_anim = anim_map[Global.has_hat][2]
 
 func die() -> void:
 	if get_tree().change_scene("res://scenes/ui/game_over/game_over.tscn") != OK:

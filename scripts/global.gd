@@ -21,3 +21,4 @@ var has_massive_bullets: bool = false
 var has_ghost_bullets: bool = false
 
 var ib_timed_out: bool = true
+var has_hat: bool = false
