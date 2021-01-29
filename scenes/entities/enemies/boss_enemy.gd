@@ -15,7 +15,7 @@ func _ready():
 func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	health_bar.value = health
 	
-	if _is_dead:
+	if _is_dead: # TODO: Boss Death SFX
 		Global.camera.shake(camera_shake_death_dur, camera_shake_death_freq, camera_shake_death_amp)
 		spawn_death_particles()
 		for enemy in get_tree().get_nodes_in_group("minions"):
@@ -23,5 +23,5 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 			enemy.spawn_death_particles()
 	else:
 		Global.camera.shake(camera_shake_hit_dur, camera_shake_hit_freq, camera_shake_hit_amp)
-		
+		hurt_sfx.play()
 		anim_player.play("hurt")
