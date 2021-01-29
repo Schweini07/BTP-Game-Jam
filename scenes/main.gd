@@ -22,6 +22,8 @@ onready var tilemap: TileMap = $Navigation2D/TileMap
 onready var open_doors_timer: Timer = $OpenDoorsTimer
 onready var hud: CanvasLayer = $Player/HUD
 
+onready var max_health = Global.health
+
 
 func _ready():
 	Global.connect("normal_enemy_killed", self, "_on_normal_enemy_killed")
@@ -79,6 +81,10 @@ func _on_kill_criteria_reached() -> void:
 	boss_start_delay_timer.start()
 	
 	open_doors_timer.start()
+	
+	Global.health = max_health
+	hud.hearts.update_hearts()
+	$Player.health_refill_sfx.play()
 
 
 func _on_OpenDoorsTimer_timeout():

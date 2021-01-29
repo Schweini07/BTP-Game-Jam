@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite_frames/entities/player/spriteframes_player.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://scenes/entities/player/Health_Refilled.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/graphics/entities/player/gun.png" type="Texture" id=4]
 [ext_resource path="res://scripts/camera_shake.gd" type="Script" id=5]
 [ext_resource path="res://scenes/entities/player/gun.gd" type="Script" id=6]
@@ -92,6 +93,10 @@ stream = ExtResource( 8 )
 
 [node name="PlayerHurtSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
+
+[node name="HealthRefillSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0
 [connection signal="hurt" from="." to="HUD" method="_on_Player_hurt"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]
