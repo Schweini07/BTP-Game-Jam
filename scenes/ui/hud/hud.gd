@@ -11,6 +11,11 @@ onready var ib_cooldown: TextureProgress = $MarginContainer/VBoxContainer/IBCool
 
 func _ready():
 	Global.connect("normal_enemy_killed", self, "increment_kill_counter")
+	
+	if Global.has_blackhole:
+		blackhole_cooldown.show()
+	if Global.has_immobolizing_bullets:
+		ib_cooldown.show()
 
 
 func _on_Player_hurt():
@@ -26,7 +31,7 @@ func increment_kill_counter():
 func start_blackhole_cooldown() -> void:
 	blackhole_cooldown_used = true
 	blackhole_cooldown.value = 0
-	for i in 10:
+	for i in 100:
 		yield(get_tree().create_timer(.19), "timeout")
 		blackhole_cooldown.value += 1
 
