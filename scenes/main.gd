@@ -124,8 +124,7 @@ func shoot(var use_ib : bool) -> void:
 func create_blackhole() -> void:
 	can_use_blackhole = false
 	blackhole_timeout.start()
-	
-  .start_blackhole_cooldown()
+	hud.start_blackhole_cooldown()
 
 	var blackhole_instance: Node2D = blackhole.instance()
 	blackhole_instance.position = get_global_mouse_position()
