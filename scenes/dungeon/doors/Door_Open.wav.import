@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Door_Open.wav-55afc2750b94b8a3f86ab78894934e79.sample"
+
+[deps]
+
+source_file="res://scenes/dungeon/doors/Door_Open.wav"
+dest_files=[ "res://.import/Door_Open.wav-55afc2750b94b8a3f86ab78894934e79.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
