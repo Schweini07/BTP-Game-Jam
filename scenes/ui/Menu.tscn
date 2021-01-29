@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/ui/Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/joystix monospace.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/tilesets/tileset.tres" type="TileSet" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -18,6 +19,12 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 65541, 1, 131074, 65542, 1, 65536, 65543, 1, 65536, 65544, 1, 65536, 65545, 1, 65536, 65546, 1, 65536, 65547, 1, 65536, 65548, 1, 65536, 65549, 1, 65536, 65550, 1, 65536, 65551, 1, 65536, 65552, 1, 65536, 65553, 1, 65536, 65554, 1, 65536, 65555, 1, 65536, 65556, 1, 65536, 65557, 1, 65536, 65558, 1, 65536, 65559, 1, 65536, 65560, 1, 65543, 131077, 1, 65542, 131096, 1, 65542, 196613, 1, 65542, 196615, 2, 0, 196630, 2, 0, 196632, 1, 65542, 262149, 1, 65542, 262168, 1, 65542, 327685, 1, 6, 327686, 1, 65536, 327687, 1, 65536, 327688, 1, 65536, 327689, 1, 131077, 327690, 1, 65536, 327691, 1, 65536, 327692, 1, 2, 327693, 5, 0, 327694, 5, 0, 327695, 5, 0, 327696, 5, 0, 327697, 1, 5, 327698, 1, 65536, 327699, 1, 65536, 327700, 1, 131077, 327701, 1, 65536, 327702, 1, 65536, 327703, 1, 65536, 327704, 1, 3, 393225, 1, 65542, 393236, 1, 65542, 458761, 1, 65542, 458772, 1, 65542, 524297, 1, 65542, 524308, 1, 65542, 589833, 1, 65542, 589844, 1, 65542, 655369, 1, 65542, 655380, 1, 65542, 720905, 1, 65542, 720916, 1, 65542, 786441, 1, 65542, 786452, 1, 65542, 851977, 1, 6, 851978, 1, 65536, 851979, 1, 65536, 851980, 1, 65536, 851981, 1, 65536, 851982, 1, 65536, 851983, 1, 65536, 851984, 1, 65536, 851985, 1, 65536, 851986, 1, 65536, 851987, 1, 65536, 851988, 1, 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -38,7 +45,7 @@ margin_bottom = 340.0
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 560.0
-margin_bottom = 39.0
+margin_bottom = 179.0
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 1 )
 text = "Working Title"
@@ -46,10 +53,10 @@ align = 1
 valign = 1
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
-margin_top = 43.0
+margin_top = 183.0
 margin_right = 560.0
 margin_bottom = 218.0
-size_flags_vertical = 3
+rect_min_size = Vector2( 0, 35 )
 size_flags_stretch_ratio = 5.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
