@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/dungeon/doors/Door_Close.wav" type="AudioStream" id=1]
-[ext_resource path="res://scenes/dungeon/doors/Door_Open.wav" type="AudioStream" id=2]
+[ext_resource path="res://scenes/dungeon/doors/Door_Toggle.wav" type="AudioStream" id=1]
 [ext_resource path="res://scenes/dungeon/doors/doors.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -19,12 +18,9 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
-[node name="OpenSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 2 )
-max_distance = 200.0
-
-[node name="CloseSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="ToggleSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
+volume_db = -20.0
 max_distance = 200.0
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
