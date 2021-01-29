@@ -19,5 +19,6 @@ func _on_UpgradeButton_toggled(button_pressed: bool) -> void:
 	else:
 		deselect()
 
-func _on_InfoButton_pressed() -> void:
-	Global.emit_signal("request_info", id)
+func _input(_event) -> void:
+	if is_hovered():
+		Global.emit_signal("request_info", id)

@@ -15,7 +15,7 @@ var infos = ["Doubles your running speed. Excellent if you want to rush trough t
 "Your ammo always stays the same, You will never have to worry that you can't shoot in hairy situations anymore.",
 "If you hit an enemy with a bullet, it will get damage every second for 5 seconds. Perfect if you fight more from the distance",
 "Press the Right Mouse Button to shoot an immobolizing bullet and stun an enemy for 2 seconds. But beware there's a cooldown of 5 seconds for using it.",
-"Press 'Shift to create a blackhole where your mouse position currently is at. It sucks all enemies in it's sorrounding into it, so you can shoot it them at a safe distance.",
+"Press 'Shift' to create a blackhole where your mouse position currently is at. It sucks all enemies in its sorroundings into itself, so you can shoot at them at a safe distance.",
 "Makes your bullets bigger. If you aren't this good at aiming this is the upgrade for you!",
 "Bullet's fly through enemies, hurting them and the ones behind. But beware, the bullet's will vanish only after one second!"]
 
