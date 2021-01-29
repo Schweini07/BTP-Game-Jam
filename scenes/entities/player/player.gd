@@ -34,6 +34,7 @@ onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 onready var gun_shot_sfx: AudioStreamPlayer2D = $GunShotSFX
 onready var player_hurt_sfx: AudioStreamPlayer2D = $PlayerHurtSFX
 onready var health_refill_sfx: AudioStreamPlayer2D = $HealthRefillSFX
+onready var reload_sfx: AudioStreamPlayer2D = $ReloadSFX
 
 
 func _ready():

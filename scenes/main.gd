@@ -51,6 +51,8 @@ func _physics_process(delta) -> void:
 	
 	if Input.is_action_just_pressed("reload") and !Global.has_no_reload:
 		reloading = true
+		$Player.reload_sfx.pitch_scale = rand_range(0.9, 1.1)
+		$Player.reload_sfx.play()
 		yield(get_tree().create_timer(1), "timeout")
 		reloading = false
 		ammo = 24
@@ -129,6 +131,8 @@ func shoot(var use_ib : bool) -> void:
 	
 	if ammo == 0:
 		reloading = true
+		$Player.reload_sfx.pitch_scale = rand_range(0.9, 1.1)
+		$Player.reload_sfx.play()
 		yield(get_tree().create_timer(1), "timeout")
 		reloading = false
 		ammo = 24
