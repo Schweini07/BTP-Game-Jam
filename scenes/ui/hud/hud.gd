@@ -6,11 +6,11 @@ var blackhole_cooldown_used: bool = false
 var ib_cooldown_used: bool = false
 var dash_cooldown_used
 
-onready var hearts: HBoxContainer = $MarginContainer/VBoxContainer/Hearts
-onready var kill_counter_label: Label = $MarginContainer/VBoxContainer/KillCounter/Label
-onready var blackhole_cooldown: TextureProgress = $MarginContainer/VBoxContainer/BlackholeCooldown
-onready var ib_cooldown: TextureProgress = $MarginContainer/VBoxContainer/IBCooldown
-onready var dash_cooldown: TextureProgress = $MarginContainer/VBoxContainer/DashCooldown
+onready var hearts: HBoxContainer = $MarginContainer/HBoxContainer/VBoxContainer/Hearts
+onready var kill_counter_label: Label = $MarginContainer/HBoxContainer/VBoxContainer2/KillCounter/Label
+onready var blackhole_cooldown: TextureProgress = $MarginContainer/HBoxContainer/VBoxContainer/BlackholeCooldown
+onready var ib_cooldown: TextureProgress = $MarginContainer/HBoxContainer/VBoxContainer/IBCooldown
+onready var dash_cooldown: TextureProgress = $MarginContainer/HBoxContainer/VBoxContainer/DashCooldown
 
 func _ready():
 	Global.connect("normal_enemy_killed", self, "increment_kill_counter")

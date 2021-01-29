@@ -44,7 +44,7 @@ func _physics_process(delta) -> void:
 		reloading = false
 		ammo = 24
 	
-	hud.get_node("MarginContainer/VBoxContainer/Ammo").text = "Ammo: " + str(ammo) + "/24"
+	hud.get_node("MarginContainer/HBoxContainer/VBoxContainer2/Ammo").text = "Ammo: " + str(ammo) + "/24"
 
 func _on_normal_enemy_killed() -> void:
 	enemy_death_sfx.pitch_scale = rand_range(0.9, 1.1)
