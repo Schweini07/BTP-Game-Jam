@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ui/hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/hearts/Hearts.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/graphics/ui/kill_counter_icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/graphics/entities/player/blackhole.png" type="Texture" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://assets/fonts/joystix monospace.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 6 )
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -53,9 +57,10 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/KillCounter"]
 margin_left = 71.0
-margin_top = 33.0
-margin_right = 100.0
-margin_bottom = 47.0
+margin_top = 30.0
+margin_right = 123.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 1 )
 text = "0/30"
 
 [node name="DashCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]

@@ -21,7 +21,6 @@ var was_hurt := false
 var is_dashing := false # Currently not necessary but may be used in the future
 var can_dash := true
 
-onready var debug_canvas: CanvasLayer = $Debug
 onready var camera: Camera2D = $Camera2D
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var gun: Sprite = $Gun
@@ -43,11 +42,6 @@ func _ready():
 
 
 func _process(_delta: float) -> void:
-	if OS.is_debug_build():
-		debug_canvas.label_velocity.text = "Velocity: (%.1f, %.1f)" % [velocity.x, velocity.y]
-		debug_canvas.label_speed.text = "Speed: %.1f" % velocity.length()
-		debug_canvas.label_health.text = "Health: %.1f" % Global.health
-
 	gun.look_at(get_global_mouse_position())
 
 
