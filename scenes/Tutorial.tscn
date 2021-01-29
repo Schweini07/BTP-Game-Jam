@@ -75,12 +75,14 @@ __meta__ = {
 }
 
 [node name="Text4" type="Label" parent="Text"]
-margin_left = 952.0
-margin_top = 48.0
-margin_right = 1122.0
-margin_bottom = 117.0
+margin_left = 962.0
+margin_top = 40.0
+margin_right = 1149.0
+margin_bottom = 127.0
 custom_fonts/font = SubResource( 3 )
-text = "If you get stuck, restart the dungeon with Ctrl+R"
+text = "Press 'p' or ESC to pause
+
+Press ALT+Enter or F11 to enter fullscreen"
 align = 1
 autowrap = true
 __meta__ = {
