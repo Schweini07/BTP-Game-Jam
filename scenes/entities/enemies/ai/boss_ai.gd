@@ -22,7 +22,7 @@ onready var current_state: AIState = state.DISABLED setget set_state
 
 
 func set_state(new_state: AIState):
-	if new_state == current_state or _enemy.idle:
+	if new_state == current_state or not _enemy:
 		return
 	current_state.pre_stop()
 	current_state = new_state

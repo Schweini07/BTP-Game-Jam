@@ -38,7 +38,6 @@ func _ready() -> void:
 	anim_sprite.material = anim_sprite.material.duplicate()
 	
 	if idle:
-		ai.initialize(self, null, null)
 		return
 	
 	if not nav_2d_path:
@@ -114,6 +113,7 @@ func spawn_death_particles() -> void:
 
 
 func die() -> void:
+	Global.emit_signal("normal_enemy_killed")
 	queue_free()
 
 func stun() -> void:
