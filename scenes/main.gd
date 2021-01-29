@@ -94,7 +94,7 @@ func save_hat():
 
 func load_hat() -> bool:
 	var save_game = File.new()
-	if save_game.file_exists("user://hat.txt"):
+	if !save_game.file_exists("user://hat.txt"):
 		save_game.close()
 		return false
 	save_game.open("user://hat.txt", File.READ)
