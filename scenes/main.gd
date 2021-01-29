@@ -25,6 +25,13 @@ func _ready():
 	Global.connect("normal_enemy_killed", self, "_on_normal_enemy_killed")
 	Global.connect("boss_killed", self, "_on_boss_killed")
 	Global.connect("kill_criteria_reached", self, "_on_kill_criteria_reached")
+	
+	if Global.tutorial:
+		$Tutorial/LoadingZone.connect("body_entered", self, "on_tutorial_loading_zone_entered")
+		
+		hud.get_node("MarginContainer/HBoxContainer/VBoxContainer").hide()
+		hud.get_node("MarginContainer/HBoxContainer/VBoxContainer2/KillCounter").hide()
+		player.get_node("Hitbox/CollisionShape2D").disabled = true
 
 
 func _physics_process(delta) -> void:
@@ -110,6 +117,10 @@ func create_blackhole() -> void:
 	blackhole_instance.position = get_global_mouse_position()
 	blackhole_parent.add_child(blackhole_instance)
 
+func on_tutorial_loading_zone_entered(body) -> void:
+	if body.name != "Player":
+		return
+	get_tree().change_scene("res://scenes/ui/Menu.tscn")
 
 func _on_ShootCooldown_timeout() -> void:
 	can_shoot = true
