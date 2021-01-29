@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ui/hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/hearts/Hearts.tscn" type="PackedScene" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://assets/fonts/joystix monospace.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 6 )
 
 [node name="HUD" type="CanvasLayer"]
@@ -62,6 +65,14 @@ margin_right = 123.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 1 )
 text = "0/30"
+
+[node name="Ammo" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 160.0
+margin_right = 940.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Ammo: 24/24"
 
 [node name="DashCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]
 visible = false
