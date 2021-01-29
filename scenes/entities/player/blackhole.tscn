@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/graphics/entities/player/blackhole.png" type="Texture" id=1]
 [ext_resource path="res://scenes/entities/player/blackhole.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 189.803
+radius = 143.43
 
 [node name="blackhole" type="Node2D"]
 script = ExtResource( 2 )
