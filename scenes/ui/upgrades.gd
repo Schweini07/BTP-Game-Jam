@@ -73,5 +73,9 @@ func _on_upgrade_button_toggled(button_pressed: bool) -> void:
 	hearts.update_hearts()
 
 func show_info(id : int) -> void:
-	info_box.get_node("Texts/UpgradeName").text = titles[id]
-	info_box.get_node("Texts/Info").text = infos[id]
+	info_box.get_node("MarginContainer/Texts/UpgradeName").text = titles[id]
+	info_box.get_node("MarginContainer/Texts/Info").text = infos[id]
+
+
+func _on_Back_pressed() -> void:
+	get_tree().change_scene("res://scenes/ui/Menu.tscn")

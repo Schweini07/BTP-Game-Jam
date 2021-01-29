@@ -20,24 +20,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Texts" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UpgradeName" type="Label" parent="Texts"]
-margin_right = 960.0
+[node name="Texts" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 958.0
+margin_bottom = 538.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpgradeName" type="Label" parent="MarginContainer/Texts"]
+margin_right = 956.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 align = 1
 autowrap = true
 
-[node name="Info" type="Label" parent="Texts"]
+[node name="Info" type="Label" parent="MarginContainer/Texts"]
 margin_top = 28.0
-margin_right = 960.0
+margin_right = 956.0
 margin_bottom = 43.0
 custom_fonts/font = SubResource( 2 )
 autowrap = true
