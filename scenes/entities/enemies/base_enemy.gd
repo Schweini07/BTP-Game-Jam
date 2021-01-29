@@ -30,6 +30,7 @@ onready var flaming_bullets_timeout: Timer = $FlamingBulletsTimeout
 onready var immobolizing_bullets_timer: Timer = $ImmobolizingBulletsTimer
 onready var immobolizing_bullets_timeout: Timer = get_tree().root.get_node("Main/ImmobolizingBulletsTimeout")
 onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
+onready var main: Node2D = get_tree().root.get_node("Main")
 
 
 func _ready() -> void:
@@ -125,6 +126,7 @@ func stun() -> void:
 		ai.state.ATTACK.speed = 0
 		immobolizing_bullets_timer.start()
 		immobolizing_bullets_timeout.start()
+		main.hud.start_ib_cooldown()
 
 
 func _on_AttackBox_area_entered(area):
