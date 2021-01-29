@@ -79,6 +79,7 @@ func _on_OpenDoorsTimer_timeout():
 func open_doors_in_range():
 	for door in get_tree().get_nodes_in_group("usable_doors"):
 		if door.global_position.distance_to(player.global_position) < 300:
+			door.inactive = true
 			door.area_collision_shape.set_deferred("disabled", true)
 			tilemap.set_cell(door.pos.x, door.pos.y, 4)
 			door.remove_from_group("usable_doors")
