@@ -16,7 +16,7 @@ func _ready() -> void:
 		speed = 1000
 
 	if Global.has_massive_bullets:
-		scale = Vector2(1, 1)
+		$spr.texture = load("res://assets/graphics/entities/player/bullet-big.png")
 
 func _physics_process(delta) -> void:
 	position += vector * speed * delta
