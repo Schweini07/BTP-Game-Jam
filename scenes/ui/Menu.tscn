@@ -52,33 +52,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -150.0
+margin_left = -187.5
 margin_top = -113.0
-margin_right = 150.0
+margin_right = 187.5
 margin_bottom = 113.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 300.0
+margin_right = 375.0
 margin_bottom = 226.0
 custom_constants/separation = 110
 alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 300.0
+margin_right = 375.0
 margin_bottom = 36.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
-text = "Working name"
+text = "Life Sacrificer"
 align = 1
 valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_left = 50.0
+margin_left = 87.0
 margin_top = 146.0
-margin_right = 250.0
+margin_right = 287.0
 margin_bottom = 226.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 4
