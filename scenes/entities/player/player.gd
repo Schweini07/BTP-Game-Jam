@@ -32,6 +32,7 @@ onready var hitbox_collision_shape: CollisionShape2D = $Hitbox/CollisionShape2D
 onready var dash_duration_timer: Timer = $DashDurationTimer
 onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 onready var gun_shot_sfx: AudioStreamPlayer2D = $GunShotSFX
+onready var player_hurt_sfx: AudioStreamPlayer2D = $PlayerHurtSFX
 
 
 func _ready():
@@ -125,6 +126,10 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	hitbox_collision_shape.set_deferred("disabled", true)
 	invincibility_timer.start()
 	Global.camera.shake(CAMERA_SHAKE_HIT_DUR, CAMERA_SHAKE_HIT_FREQ, CAMERA_SHAKE_HIT_AMP)
+	if _is_dead: # TODO: Player death SFX
+		pass
+	else:
+		player_hurt_sfx.play()
 	anim_sprite.play("hurt")
 	anim_player.play("hurt")
 	yield(anim_sprite, "animation_finished")
