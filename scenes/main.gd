@@ -71,7 +71,7 @@ func _on_boss_killed() -> void:
 	enemy_death_sfx.play()
 	Global.has_hat = true
 	$Player.update_animations()
-	if randi() <= 0.01:
+	if randf() <= 0.01:
 		$WinLabel.text += "\n\nSo long and thanks for all the hats"
 	$WinLabel.rect_global_position = $Player.global_position - $WinLabel.rect_size / 2
 	$WinLabel.visible = true
