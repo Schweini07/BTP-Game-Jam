@@ -26,6 +26,8 @@ onready var max_health = Global.health
 
 
 func _ready():
+	$WinLabel.visible = false
+	
 	Global.connect("normal_enemy_killed", self, "_on_normal_enemy_killed")
 	Global.connect("boss_killed", self, "_on_boss_killed")
 	Global.connect("kill_criteria_reached", self, "_on_kill_criteria_reached")
@@ -67,6 +69,10 @@ func _on_normal_enemy_killed() -> void:
 func _on_boss_killed() -> void:
 	enemy_death_sfx.pitch_scale = rand_range(0.9, 1.1)
 	enemy_death_sfx.play()
+	Global.has_hat = true
+	$Player.update_animations()
+	$WinLabel.rect_global_position = $Player.global_position - $WinLabel.rect_size / 2
+	$WinLabel.visible = true
 
 
 func _on_kill_criteria_reached() -> void:
@@ -105,6 +111,8 @@ func open_doors_in_range():
 
 
 func _on_BossStartDelay_timeout():
+	if not boss_instance: # Already dead... somehow
+		return
 	boss_instance.idle = false
 	boss_instance.ai.initialize(boss_instance, $Player, $Navigation2D)
 	boss_instance.ai.current_state = boss_instance.ai.state.ATTACK

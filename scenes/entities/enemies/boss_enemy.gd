@@ -18,7 +18,6 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	if _is_dead: # TODO: Boss Death SFX
 		Global.emit_signal("boss_killed")
 		Global.camera.shake(camera_shake_death_dur, camera_shake_death_freq, camera_shake_death_amp)
-		Global.has_hat = true
 		spawn_death_particles()
 		for enemy in get_tree().get_nodes_in_group("minions"):
 			enemy.die()
