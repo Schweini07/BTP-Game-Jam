@@ -58,13 +58,13 @@ margin_right = 100.0
 margin_bottom = 47.0
 text = "0/30"
 
-[node name="BlackholeCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]
+[node name="DashCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]
 visible = false
 margin_top = 160.0
 margin_right = 940.0
-margin_bottom = 208.0
+margin_bottom = 224.0
 value = 100.0
-texture_progress = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
 fill_mode = 5
 
 [node name="IBCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]
@@ -74,4 +74,13 @@ margin_right = 940.0
 margin_bottom = 224.0
 value = 100.0
 texture_progress = ExtResource( 5 )
+fill_mode = 5
+
+[node name="BlackholeCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 160.0
+margin_right = 940.0
+margin_bottom = 208.0
+value = 100.0
+texture_progress = ExtResource( 4 )
 fill_mode = 5
