@@ -1,11 +1,14 @@
 extends Node2D
 
+const BOSS_SCENE := preload("res://scenes/entities/enemies/boss_enemy.tscn")
+
 var bullet: PackedScene = preload("res://scenes/entities/player/bullet.tscn")
 var blackhole: PackedScene = preload("res://scenes/entities/player/blackhole.tscn")
 var ammo := 24
 var can_shoot: bool = true
 var reloading: bool = false
 var can_use_blackhole:bool = true
+var boss_instance: BaseEnemy
 
 onready var player: KinematicBody2D = $Player
 onready var shoot_pos: Position2D = $Player/Gun/ShootPos
@@ -13,6 +16,12 @@ onready var gun: Sprite = $Player/Gun
 onready var shoot_cooldown: Timer = $ShootCooldown
 onready var blackhole_parent: Node2D = $BlackholeParent
 onready var blackhole_timeout: Timer = $BlackholeTimeout
+onready var boss_start_delay_timer: Timer = $BossStartDelay
+
+
+func _ready():
+	Global.connect("kill_criteria_reached", self, "_on_kill_criteria_reached")
+
 
 func _physics_process(delta) -> void:
 	if Input.is_action_pressed("fire"):
@@ -30,6 +39,24 @@ func _physics_process(delta) -> void:
 		yield(get_tree().create_timer(1), "timeout")
 		reloading = false
 		ammo = 24
+
+
+func _on_kill_criteria_reached() -> void:
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		enemy.queue_free()
+	
+	boss_instance = BOSS_SCENE.instance()
+	boss_instance.global_position = $Player.global_position
+	boss_instance.idle = true
+	call_deferred("add_child", boss_instance)
+	yield(boss_instance, "ready")
+	boss_start_delay_timer.start()
+
+
+func _on_BossStartDelay_timeout():
+	boss_instance.idle = false
+	boss_instance.ai.initialize(boss_instance, $Player, $Navigation2D)
+	boss_instance.ai.current_state = boss_instance.ai.state.ATTACK
 
 
 func shoot(var use_ib : bool) -> void:

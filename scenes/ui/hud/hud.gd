@@ -16,6 +16,6 @@ func _on_Player_hurt():
 
 func increment_kill_counter():
 	num_kills += 1
-	if num_kills == 30:
+	if num_kills == 1:#30:
 		Global.emit_signal("kill_criteria_reached")
 	kill_counter_label.text = "%d/30" % num_kills

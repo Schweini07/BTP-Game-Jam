@@ -40,6 +40,11 @@ one_shot = true
 [node name="BlackholeTimeout" type="Timer" parent="."]
 wait_time = 20.0
 one_shot = true
+
+[node name="BossStartDelay" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 [connection signal="timeout" from="ShootCooldown" to="." method="_on_ShootCooldown_timeout"]
 [connection signal="timeout" from="ImmobolizingBulletsTimeout" to="." method="_on_ImmobolizingBulletsTimeout_timeout"]
 [connection signal="timeout" from="BlackholeTimeout" to="." method="_on_BlackholeTimeout_timeout"]
+[connection signal="timeout" from="BossStartDelay" to="." method="_on_BossStartDelay_timeout"]

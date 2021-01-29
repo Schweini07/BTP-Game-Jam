@@ -38,7 +38,6 @@ func _ready() -> void:
 	anim_sprite.material = anim_sprite.material.duplicate()
 	
 	if idle:
-		ai.initialize(self, null, null)
 		return
 	
 	if not nav_2d_path:
