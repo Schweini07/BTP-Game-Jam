@@ -68,6 +68,7 @@ func _pre_apply_movement(delta: float) -> void:
 		MAX_SPEED *= 3
 		ACC *= 2
 		dash_duration_timer.start()
+		get_parent().hud.start_dash_cooldown()
 		
 	if input == Vector2.ZERO:
 		_apply_friction(DEACC * delta)

@@ -20,6 +20,7 @@ onready var boss_start_delay_timer: Timer = $BossStartDelay
 onready var enemy_death_sfx: AudioStreamPlayer2D = $EnemyDeathSFX
 onready var tilemap: TileMap = $Navigation2D/TileMap
 onready var open_doors_timer: Timer = $OpenDoorsTimer
+onready var hud: CanvasLayer = $Player/HUD
 
 
 func _ready():
@@ -123,6 +124,8 @@ func shoot(var use_ib : bool) -> void:
 func create_blackhole() -> void:
 	can_use_blackhole = false
 	blackhole_timeout.start()
+	
+  .start_blackhole_cooldown()
 
 	var blackhole_instance: Node2D = blackhole.instance()
 	blackhole_instance.position = get_global_mouse_position()

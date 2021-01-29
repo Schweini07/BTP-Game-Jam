@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/ui/hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/hearts/Hearts.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/graphics/ui/kill_counter_icon.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/entities/player/blackhole.png" type="Texture" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -55,3 +57,30 @@ margin_top = 33.0
 margin_right = 100.0
 margin_bottom = 47.0
 text = "0/30"
+
+[node name="DashCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 160.0
+margin_right = 940.0
+margin_bottom = 224.0
+value = 100.0
+texture_progress = ExtResource( 5 )
+fill_mode = 5
+
+[node name="IBCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 160.0
+margin_right = 940.0
+margin_bottom = 224.0
+value = 100.0
+texture_progress = ExtResource( 5 )
+fill_mode = 5
+
+[node name="BlackholeCooldown" type="TextureProgress" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 160.0
+margin_right = 940.0
+margin_bottom = 208.0
+value = 100.0
+texture_progress = ExtResource( 4 )
+fill_mode = 5

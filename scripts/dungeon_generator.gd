@@ -177,8 +177,14 @@ func g(pos):
 	if len(unvisited) < 1:
 		#for i in range(4):
 		#	maze[pos.x*2+move_map[i].x][pos.y*2+move_map[i].y] = "visited"
-		for _i in range(4):
-			maze[pos.x * 2 + randi() % 3 - 1][pos.y * 2 - randi() % 3 - 1] = "visited"
+		
+		if pos < Vector2(28, 28):
+			for i in range(4):
+				maze[pos.x * 2 + move_map[i].x][pos.y * 2 + move_map[i].y] = "visited"
+		else:
+			for _i in range(4):
+				maze[pos.x * 2 + randi() % 3 - 1][pos.y * 2 - randi() % 3 - 1] = "visited"
+
 
 		if len(get_unvisited(pos)) < 2:
 			maze[pos.x * 2][pos.y * 2] = "upgrade"
