@@ -83,7 +83,7 @@ func animate() -> void:
 		anim_sprite.play("idle")
 
 
-func hurt(dmg: int) -> void:
+func hurt(dmg: int, is_burn_damage: bool) -> void:
 	health -= dmg
 
 	if Global.has_flaming_bullets and flaming_bullets_timer.is_stopped():
@@ -94,10 +94,10 @@ func hurt(dmg: int) -> void:
 	if health <= 0:
 		is_dead = true
 		die()
-	_post_hurt(dmg, is_dead)
+	_post_hurt(dmg, is_dead, is_burn_damage)
 
 
-func _post_hurt(_dmg: float, _is_dead: bool) -> void:
+func _post_hurt(_dmg: float, _is_dead: bool, is_burn_damage: bool) -> void:
 	if _is_dead: # TODO: Enemy Death SFX
 		Global.camera.shake(camera_shake_death_dur, camera_shake_death_freq, camera_shake_death_amp)
 		spawn_death_particles()
@@ -105,7 +105,10 @@ func _post_hurt(_dmg: float, _is_dead: bool) -> void:
 		Global.camera.shake(camera_shake_hit_dur, camera_shake_hit_freq, camera_shake_hit_amp)
 		hurt_sfx.pitch_scale = rand_range(0.9, 1.1)
 		hurt_sfx.play()
-		anim_player.play("hurt")
+		if is_burn_damage:
+			anim_player.play("hurt_burn")
+		else:
+			anim_player.play("hurt")
 
 
 func spawn_death_particles() -> void:
@@ -136,7 +139,7 @@ func _on_AttackBox_area_entered(area):
 
 
 func _on_FlamingBulletsTimer_timeout():
-	hurt(5)
+	hurt(5, true)
 
 func _on_FlamingBulletsTimeout_timeout():
 	flaming_bullets_timer.stop()

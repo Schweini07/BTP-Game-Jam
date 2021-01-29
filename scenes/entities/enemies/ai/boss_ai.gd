@@ -57,7 +57,7 @@ func _on_CalculatePathTimer_timeout():
 		_enemy.path_line.points = _path_to_player
 
 
-func _on_Hitbox_hitbox_activated(_damage):
+func _on_Hitbox_hitbox_activated(_damage, _is_burn_damage):
 	self.current_state = state.ATTACK
 
 

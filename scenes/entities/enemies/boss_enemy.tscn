@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/ai/boss_ai.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite_frames/entities/enemies/spriteframes_boss.tres" type="SpriteFrames" id=2]
@@ -41,6 +41,47 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 0.4, 2, 1 ),
 "update": 0,
 "values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:material:shader_param/tint_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "hurt_burn"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/mix_weight")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 0.4, 2, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:material:shader_param/tint_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.854902, 0.305882, 0.219608, 1 ) ]
 }
 
 [node name="BossEnemy" type="KinematicBody2D" groups=[
@@ -107,6 +148,7 @@ shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hurt = SubResource( 6 )
+anims/hurt_burn = SubResource( 7 )
 
 [node name="PathNode" type="Node" parent="."]
 
@@ -139,8 +181,8 @@ stream = ExtResource( 9 )
 [connection signal="body_entered" from="BossAI/PlayerDetectionArea" to="BossAI" method="_on_PlayerDetectionArea_body_entered"]
 [connection signal="timeout" from="BossAI/CalculatePathTimer" to="BossAI" method="_on_CalculatePathTimer_timeout"]
 [connection signal="timeout" from="BossAI/SummonEnemyTimer" to="BossAI" method="_on_SummonEnemyTimer_timeout"]
-[connection signal="hitbox_activated" from="Hitbox" to="." method="hurt"]
 [connection signal="hitbox_activated" from="Hitbox" to="BossAI" method="_on_Hitbox_hitbox_activated"]
+[connection signal="hitbox_activated" from="Hitbox" to="." method="hurt"]
 [connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]
 [connection signal="timeout" from="FlamingBulletsTimeout" to="." method="_on_FlamingBulletsTimeout_timeout"]
 [connection signal="timeout" from="FlamingBulletsTimer" to="." method="_on_FlamingBulletsTimer_timeout"]

@@ -12,7 +12,7 @@ func _ready():
 	health_bar.value = health
 
 
-func _post_hurt(_damage: float, _is_dead: bool) -> void:
+func _post_hurt(_damage: float, _is_dead: bool, is_burn_damage: bool) -> void:
 	health_bar.value = health
 	
 	if _is_dead: # TODO: Boss Death SFX
@@ -25,4 +25,7 @@ func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	else:
 		Global.camera.shake(camera_shake_hit_dur, camera_shake_hit_freq, camera_shake_hit_amp)
 		hurt_sfx.play()
-		anim_player.play("hurt")
+		if is_burn_damage:
+			anim_player.play("hurt_burn")
+		else:
+			anim_player.play("hurt")
