@@ -28,6 +28,10 @@ onready var max_health = Global.health
 func _ready():
 	$WinLabel.visible = false
 	
+	if load_hat():
+		Global.has_hat = true
+		$Player.update_animations()
+	
 	Global.connect("normal_enemy_killed", self, "_on_normal_enemy_killed")
 	Global.connect("boss_killed", self, "_on_boss_killed")
 	Global.connect("kill_criteria_reached", self, "_on_kill_criteria_reached")
@@ -80,7 +84,23 @@ func _on_boss_killed() -> void:
 		$WinLabel.text += "\n\nSo long and thanks for all the hats"
 	$WinLabel.rect_global_position = $Player.global_position - $WinLabel.rect_size / 2
 	$WinLabel.visible = true
+	save_hat()
 
+func save_hat():
+	var save_game = File.new()
+	save_game.open("user://hat.txt", File.WRITE)
+	save_game.store_string("true")
+	save_game.close()
+
+func load_hat() -> bool:
+	var save_game = File.new()
+	save_game.open("user://hat.txt", File.READ)
+	var result = save_game.get_as_text()
+	save_game.close()
+	if "true" in result:
+		return true
+	else:
+		return false
 
 func _on_kill_criteria_reached() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemy"):
