@@ -1,6 +1,7 @@
 extends Node
 
 signal normal_enemy_killed
+signal boss_killed
 signal kill_criteria_reached
 signal request_info
 
