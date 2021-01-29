@@ -22,6 +22,7 @@ onready var enemy_death_sfx: AudioStreamPlayer2D = $EnemyDeathSFX
 
 func _ready():
 	Global.connect("normal_enemy_killed", self, "_on_normal_enemy_killed")
+	Global.connect("boss_killed", self, "_on_boss_killed")
 	Global.connect("kill_criteria_reached", self, "_on_kill_criteria_reached")
 
 
@@ -44,6 +45,11 @@ func _physics_process(delta) -> void:
 
 
 func _on_normal_enemy_killed() -> void:
+	enemy_death_sfx.pitch_scale = rand_range(0.9, 1.1)
+	enemy_death_sfx.play()
+
+
+func _on_boss_killed() -> void:
 	enemy_death_sfx.pitch_scale = rand_range(0.9, 1.1)
 	enemy_death_sfx.play()
 
