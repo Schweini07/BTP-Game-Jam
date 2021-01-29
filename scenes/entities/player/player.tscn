@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite_frames/entities/player/spriteframes_player.tres" type="SpriteFrames" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/entities/player/gun.gd" type="Script" id=6]
 [ext_resource path="res://scenes/ui/hud/hud.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/entities/player/Gun_Shoot.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/entities/player/Player_Hurt.wav" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
@@ -91,6 +92,9 @@ one_shot = true
 
 [node name="GunShotSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
+
+[node name="PlayerHurtSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
 [connection signal="hurt" from="." to="HUD" method="_on_Player_hurt"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]
