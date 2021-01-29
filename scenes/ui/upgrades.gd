@@ -18,14 +18,20 @@ var infos = ["Doubles your running speed. Excellent if you want to rush through 
 "Press 'Shift' to create a blackhole where your mouse position is currently at. It sucks all enemies in its surroundings into itself, so you can shoot them at a safe distance.",
 "Makes your bullets bigger. If you aren't good at aiming, this is the upgrade for you!",
 "Bullets fly through enemies, hurting them and those behind. But beware, the bullets will vanish after only one second!"]
+var icons = ["res://assets/graphics/ui/upgrade_icons/speed.png", "res://assets/graphics/ui/upgrade_icons/dash.png", 
+"res://assets/graphics/ui/upgrade_icons/rapid_bullets.png", "res://assets/graphics/ui/upgrade_icons/no_reload.png",
+"res://assets/graphics/ui/upgrade_icons/flaming_bullets.png", "res://assets/graphics/ui/upgrade_icons/immobilization_bullets.png",
+"res://assets/graphics/ui/upgrade_icons/blackhole_icon.png", "res://assets/graphics/ui/upgrade_icons/bullet-big_icon.png",
+"res://assets/graphics/ui/upgrade_icons/ghost_bullets.png"]
 
 func _ready() -> void:
 	Global.connect("request_info", self, "show_info")
 
 	for i in 9:
-		var upgrade_button_instance: TextureButton = upgrade_button.instance()
+		var upgrade_button_instance: Button = upgrade_button.instance()
 		upgrade_button_instance.id = i
 		upgrade_button_instance.connect("toggled", self, "_on_upgrade_button_toggled")
+		upgrade_button_instance.get_node("icon").texture = load(icons[i])
 		grid_container.add_child(upgrade_button_instance)
 
 
