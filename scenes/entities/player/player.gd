@@ -20,6 +20,7 @@ var was_hurt := false
 
 var is_dashing := false # Currently not necessary but may be used in the future
 var can_dash := true
+var immune := false
 
 onready var camera: Camera2D = $Camera2D
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
@@ -32,6 +33,7 @@ onready var dash_duration_timer: Timer = $DashDurationTimer
 onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 onready var gun_shot_sfx: AudioStreamPlayer2D = $GunShotSFX
 onready var player_hurt_sfx: AudioStreamPlayer2D = $PlayerHurtSFX
+onready var health_refill_sfx: AudioStreamPlayer2D = $HealthRefillSFX
 
 
 func _ready():
@@ -104,7 +106,7 @@ func _accelerate(amount: Vector2) -> void:
 
 
 func hurt(damage: int) -> void:
-	if is_dashing:
+	if is_dashing or immune:
 		return
 	
 	Global.health -= damage
@@ -119,6 +121,7 @@ func hurt(damage: int) -> void:
 func _post_hurt(_damage: float, _is_dead: bool) -> void:
 	was_hurt = true
 	hitbox_collision_shape.set_deferred("disabled", true)
+	immune = true
 	invincibility_timer.start()
 	Global.camera.shake(CAMERA_SHAKE_HIT_DUR, CAMERA_SHAKE_HIT_FREQ, CAMERA_SHAKE_HIT_AMP)
 	if _is_dead: # TODO: Player death SFX
@@ -139,6 +142,7 @@ func die() -> void:
 
 func _on_InvincibilityTimer_timeout():
 	hitbox_collision_shape.set_deferred("disabled", false)
+	immune = false
 
 
 func _on_DashDurationTimer_timeout():

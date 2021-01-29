@@ -130,6 +130,8 @@ func stun() -> void:
 
 
 func _on_AttackBox_area_entered(area):
+	if idle:
+		return
 	area.get_parent().hurt(damage)
 
 
