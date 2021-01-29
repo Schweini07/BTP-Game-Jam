@@ -21,7 +21,6 @@ var was_hurt := false
 var is_dashing := false # Currently not necessary but may be used in the future
 var can_dash := true
 
-onready var debug_canvas: CanvasLayer = $Debug
 onready var camera: Camera2D = $Camera2D
 onready var anim_sprite: AnimatedSprite = $AnimatedSprite
 onready var gun: Sprite = $Gun
