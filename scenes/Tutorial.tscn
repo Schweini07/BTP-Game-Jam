@@ -4,18 +4,18 @@
 [ext_resource path="res://assets/tilesets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/entities/enemies/base_enemy.tscn" type="PackedScene" id=3]
 
-[sub_resource type="DynamicFont" id=2]
-size = 8
+[sub_resource type="DynamicFont" id=1]
+size = 10
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 12
+[sub_resource type="DynamicFont" id=2]
+size = 10
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
-size = 12
+[sub_resource type="DynamicFont" id=3]
+size = 10
 font_data = ExtResource( 1 )
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -41,17 +41,20 @@ margin_left = -56.0
 margin_top = -40.0
 margin_right = 240.0
 margin_bottom = 24.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "poor boy, the game jam gods have descended you into a dungeon.
 To escape and get a cool reward, you will have to kill 30 enemies and defeat a boss."
 align = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Text2" type="Label" parent="Text"]
 margin_top = 80.0
 margin_right = 170.0
 margin_bottom = 113.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "To move use wasd"
 align = 1
 __meta__ = {
@@ -63,7 +66,7 @@ margin_left = 336.0
 margin_top = 72.0
 margin_right = 506.0
 margin_bottom = 123.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Shoot enemies with the left mouse button"
 align = 1
 autowrap = true
@@ -76,7 +79,7 @@ margin_left = 952.0
 margin_top = 48.0
 margin_right = 1122.0
 margin_bottom = 117.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "If you get stuck, restart the dungeon with Ctrl+R"
 align = 1
 autowrap = true
@@ -89,7 +92,7 @@ margin_left = 1288.0
 margin_top = 56.0
 margin_right = 1458.0
 margin_bottom = 125.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Good Luck!
 You will need it."
 align = 1
@@ -104,7 +107,7 @@ margin_left = 520.0
 margin_top = 64.0
 margin_right = 690.0
 margin_bottom = 133.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "If you are out of ammunition, press r to reload"
 align = 1
 valign = 1
