@@ -18,12 +18,10 @@ __meta__ = {
 [node name="UpgradeName" type="Label" parent="Texts"]
 margin_right = 960.0
 margin_bottom = 14.0
-text = "Upgrade_Name"
 align = 1
 
-[node name="UpgradeName2" type="Label" parent="Texts"]
+[node name="Info" type="Label" parent="Texts"]
 margin_top = 18.0
 margin_right = 960.0
-margin_bottom = 66.0
-text = "This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. This is an example for a an text. "
+margin_bottom = 32.0
 autowrap = true

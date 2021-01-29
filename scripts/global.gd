@@ -2,6 +2,7 @@ extends Node
 
 signal normal_enemy_killed
 signal kill_criteria_reached
+signal request_info
 
 var health := 100
 var tutorial: bool = false
