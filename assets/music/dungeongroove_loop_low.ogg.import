@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dungeongroove_loop_low.ogg-d82a5cee65fc23da9b0364bd5acecaa2.oggstr"
+
+[deps]
+
+source_file="res://assets/music/dungeongroove_loop_low.ogg"
+dest_files=[ "res://.import/dungeongroove_loop_low.ogg-d82a5cee65fc23da9b0364bd5acecaa2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

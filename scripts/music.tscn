@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/music/dungeongroove_loop_low.ogg" type="AudioStream" id=2]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource( 2 )
+volume_db = -30.0
+autoplay = true
