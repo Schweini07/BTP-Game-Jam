@@ -122,6 +122,15 @@ func generate():
 	var room
 	for i in range(len(maze) / room_frequency):
 		for j in range(len(maze[i]) / room_frequency):
+			if i == 0 and j == 0:
+				room = Room.new()
+				room.pos = Vector2(1,1)
+				room.maze = maze
+				room.box_chance = 8
+				room.size = Vector2(room_frequency, room_frequency) + Vector2(2, 2)
+				room.add_to_maze()
+				rooms.append(room)
+				continue
 			room = Room.new()
 			room.pos = Vector2(i, j) * room_frequency
 			room.maze = maze
