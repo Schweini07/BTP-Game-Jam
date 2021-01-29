@@ -23,6 +23,11 @@ func _ready():
 		dash_cooldown.show()
 
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().paused = true
+		$PauseMenu.show()
+
 func _on_Player_hurt():
 	hearts.update_hearts()
 
@@ -53,3 +58,14 @@ func start_dash_cooldown() -> void:
 	for i in 100:
 		yield(get_tree().create_timer(.03), "timeout")
 		dash_cooldown.value += 1
+
+func _on_Continue_pressed():
+	get_tree().paused = false
+	$PauseMenu.hide()
+
+func _on_MainMenu_pressed():
+	get_tree().paused = false
+	get_tree().change_scene("res://scenes/ui/Menu.tscn")
+
+func _on_Quit_pressed():
+	get_tree().quit()
