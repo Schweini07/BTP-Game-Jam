@@ -52,6 +52,7 @@ config/icon="res://icon.png"
 
 Generator="*res://scripts/dungeon_generator.gd"
 Global="*res://scripts/global.gd"
+Music="*res://scripts/music.tscn"
 
 [display]
 
