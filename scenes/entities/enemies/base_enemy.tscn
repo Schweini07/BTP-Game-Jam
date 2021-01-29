@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/base_enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprite_frames/entities/enemies/spriteframes_big_demon.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://scenes/entities/enemies/ai/ai.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/enemies/hitbox.gd" type="Script" id=4]
 [ext_resource path="res://assets/shaders/texture_tint.shader" type="Shader" id=5]
+[ext_resource path="res://scenes/entities/enemies/Enemy_Hurt.wav" type="AudioStream" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
@@ -88,8 +89,11 @@ one_shot = true
 [node name="ImmobolizingBulletsTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-[connection signal="hitbox_activated" from="Hitbox" to="AI" method="_on_Hitbox_hitbox_activated"]
+
+[node name="HurtSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 [connection signal="hitbox_activated" from="Hitbox" to="." method="hurt"]
+[connection signal="hitbox_activated" from="Hitbox" to="AI" method="_on_Hitbox_hitbox_activated"]
 [connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]
 [connection signal="timeout" from="FlamingBulletsTimeout" to="." method="_on_FlamingBulletsTimeout_timeout"]
 [connection signal="timeout" from="FlamingBulletsTimer" to="." method="_on_FlamingBulletsTimer_timeout"]

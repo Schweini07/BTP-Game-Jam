@@ -29,6 +29,7 @@ onready var flaming_bullets_timer: Timer = $FlamingBulletsTimer
 onready var flaming_bullets_timeout: Timer = $FlamingBulletsTimeout
 onready var immobolizing_bullets_timer: Timer = $ImmobolizingBulletsTimer
 onready var immobolizing_bullets_timeout: Timer = get_tree().root.get_node("Main/ImmobolizingBulletsTimeout")
+onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 
 
 func _ready() -> void:
@@ -96,12 +97,13 @@ func hurt(dmg: int) -> void:
 
 
 func _post_hurt(_dmg: float, _is_dead: bool) -> void:
-	if _is_dead:
+	if _is_dead: # TODO: Enemy Death SFX
 		Global.camera.shake(camera_shake_death_dur, camera_shake_death_freq, camera_shake_death_amp)
 		spawn_death_particles()
 	else:
 		Global.camera.shake(camera_shake_hit_dur, camera_shake_hit_freq, camera_shake_hit_amp)
-		
+		hurt_sfx.pitch_scale = rand_range(0.9, 1.1)
+		hurt_sfx.play()
 		anim_player.play("hurt")
 
 
