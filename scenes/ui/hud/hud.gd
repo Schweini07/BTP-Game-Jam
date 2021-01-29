@@ -65,6 +65,7 @@ func _on_Continue_pressed():
 
 func _on_MainMenu_pressed():
 	get_tree().paused = false
+	Global.reset()
 	get_tree().change_scene("res://scenes/ui/Menu.tscn")
 
 func _on_Quit_pressed():

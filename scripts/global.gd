@@ -22,3 +22,22 @@ var has_ghost_bullets: bool = false
 
 var ib_timed_out: bool = true
 var has_hat: bool = false
+
+
+func reset() -> void:
+	health = 100
+	tutorial = false
+	camera = null
+
+	has_speed_upgrade = false
+	has_dash = false
+	has_rapid_fire = false
+	has_no_reload = false
+	has_flaming_bullets = false
+	has_immobolizing_bullets = false
+	has_blackhole = false
+	has_massive_bullets = false
+	has_ghost_bullets = false
+
+	ib_timed_out = true
+	has_hat = false
