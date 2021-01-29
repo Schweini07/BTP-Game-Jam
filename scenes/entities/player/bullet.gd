@@ -1,5 +1,7 @@
 extends Area2D
 
+const EXPLODE_PARTICLES_SCENE = preload("res://scenes/particle_systems/entities/player/bullet_explode_particles.tscn")
+
 const BULLET_DAMAGE := 10.0
 
 var speed = 500
@@ -22,13 +24,9 @@ func _physics_process(delta) -> void:
 	position += vector * speed * delta
 
 
-func explode() -> void:
-	speed = 0
-	coll.call_deferred("set", "disabled", true)
-	queue_free_timer.start()
-
-
-func _on_Bullet_body_entered(_body: TileMap) -> void:
+func _on_Bullet_body_entered(body: TileMap) -> void:
+	if body.get_cellv(body.world_to_map(global_position + vector * 10)) != 5:
+		spawn_explode_particles()
 	queue_free()
 
 
@@ -42,3 +40,10 @@ func _on_Bullet_area_entered(area: Area2D) -> void:
 
 func _on_QueueFreeTimer_timeout():
 	queue_free()
+
+
+func spawn_explode_particles() -> void:
+	var particles = EXPLODE_PARTICLES_SCENE.instance()
+	particles.global_position = global_position
+	get_tree().root.add_child(particles)
+	particles.start()
