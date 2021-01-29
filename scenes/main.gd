@@ -18,6 +18,8 @@ onready var blackhole_parent: Node2D = $BlackholeParent
 onready var blackhole_timeout: Timer = $BlackholeTimeout
 onready var boss_start_delay_timer: Timer = $BossStartDelay
 onready var enemy_death_sfx: AudioStreamPlayer2D = $EnemyDeathSFX
+onready var tilemap: TileMap = $Navigation2D/TileMap
+onready var open_doors_timer: Timer = $OpenDoorsTimer
 
 
 func _ready():
@@ -58,12 +60,30 @@ func _on_kill_criteria_reached() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		enemy.queue_free()
 	
+	open_doors_in_range()
+	
 	boss_instance = BOSS_SCENE.instance()
 	boss_instance.global_position = $Player.global_position
 	boss_instance.idle = true
 	call_deferred("add_child", boss_instance)
 	yield(boss_instance, "ready")
 	boss_start_delay_timer.start()
+	
+	open_doors_timer.start()
+
+
+func _on_OpenDoorsTimer_timeout():
+	open_doors_in_range()
+
+
+func open_doors_in_range():
+	for door in get_tree().get_nodes_in_group("usable_doors"):
+		if door.global_position.distance_to(player.global_position) < 300:
+			door.area_collision_shape.set_deferred("disabled", true)
+			tilemap.set_cell(door.pos.x, door.pos.y, 4)
+			door.remove_from_group("usable_doors")
+	if not get_tree().get_nodes_in_group("usable_doors"):
+		open_doors_timer.stop()
 
 
 func _on_BossStartDelay_timeout():

@@ -7,7 +7,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.3323, 34.4901 )
 
-[node name="door" type="Node2D"]
+[node name="door" type="Node2D" groups=[
+"usable_doors",
+]]
 script = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]

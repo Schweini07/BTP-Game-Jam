@@ -3,6 +3,7 @@ extends Node2D
 onready var tilemap = get_node("../../Navigation2D/TileMap")
 onready var pos = Vector2(int(position.x/32), int(position.y/32))
 onready var area = $Area2D
+onready var area_collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
 onready var open_sfx: AudioStreamPlayer2D = $OpenSFX
 onready var close_sfx: AudioStreamPlayer2D = $CloseSFX
 
