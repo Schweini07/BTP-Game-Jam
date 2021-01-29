@@ -8,7 +8,7 @@ var ammo := 24
 var can_shoot: bool = true
 var reloading: bool = false
 var can_use_blackhole:bool = true
-var boss_instance: BaseEnemy
+var boss_instance
 
 onready var player: KinematicBody2D = $Player
 onready var shoot_pos: Position2D = $Player/Gun/ShootPos
