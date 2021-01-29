@@ -1,7 +1,8 @@
 extends AIState
 
-const SPEED = 230
 const REACHED_PLAYER_MIN_DIST := 10
+
+var speed = 230
 
 var path_to_player_original: PoolVector2Array
 var path_to_player_current: PoolVector2Array
@@ -32,12 +33,12 @@ func execute(delta: float, path: PoolVector2Array, _nearby_enemies: Array) -> vo
 	
 	var dir := get_follow_path_dir(delta, path_to_player_current, enemy)
 	
-	enemy.velocity = dir * SPEED
+	enemy.velocity = dir * speed
 
 
 func get_follow_path_dir(delta: float, path: PoolVector2Array, enemy: BaseEnemy) -> Vector2:
 	var dir := enemy.global_position.direction_to(path[1])
-	if enemy.global_position.distance_to(path[1]) <= SPEED * delta:
+	if enemy.global_position.distance_to(path[1]) <= speed * delta:
 		path.remove(0)
 		path_to_player_current = path
 	if path.size() <= 1:
