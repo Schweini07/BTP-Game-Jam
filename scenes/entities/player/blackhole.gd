@@ -17,7 +17,7 @@ func _process(delta):
 		queue_free()
 	
 	for i in range(len(bodies)):
-		bodies[i].move_and_slide(bodies[i].global_position.direction_to(global_position) * (SPEED * multiplier))
+		bodies[i].move_and_slide(bodies[i].global_position.direction_to(global_position) * (SPEED * multiplier) / 1.4)
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy") and not body in bodies:
