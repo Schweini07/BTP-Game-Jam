@@ -19,4 +19,10 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="InfoButton" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "i"
 [connection signal="toggled" from="." to="." method="_on_UpgradeButton_toggled"]
+[connection signal="pressed" from="InfoButton" to="." method="_on_InfoButton_pressed"]
