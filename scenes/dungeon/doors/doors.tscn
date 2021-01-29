@@ -20,7 +20,7 @@ shape = SubResource( 1 )
 
 [node name="ToggleSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
-volume_db = -20.0
+volume_db = -10.0
 max_distance = 200.0
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
