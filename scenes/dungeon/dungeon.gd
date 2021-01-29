@@ -44,6 +44,8 @@ func _ready():
 	add_rooms()
 	add_doors()
 
+	get_node("../Player").position = chunks[0][0][1].position + Vector2(72, 72)
+
 
 func add_rooms():
 	for i in range(len(chunks)):
