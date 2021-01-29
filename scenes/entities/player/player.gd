@@ -31,6 +31,7 @@ onready var invincibility_timer: Timer = $InvincibilityTimer
 onready var hitbox_collision_shape: CollisionShape2D = $Hitbox/CollisionShape2D
 onready var dash_duration_timer: Timer = $DashDurationTimer
 onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+onready var gun_shot_sfx: AudioStreamPlayer2D = $GunShotSFX
 
 
 func _ready():

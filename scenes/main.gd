@@ -67,7 +67,9 @@ func shoot(var use_ib : bool) -> void:
 
 	if use_ib:
 		bullet_instance.is_ib_bullet = true
-
+	
+	player.gun_shot_sfx.pitch_scale = rand_range(0.95, 1.05)
+	player.gun_shot_sfx.play()
 	add_child(bullet_instance)
 	
 	shoot_cooldown.start()
