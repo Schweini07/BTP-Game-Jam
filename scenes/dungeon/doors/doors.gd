@@ -14,8 +14,10 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if inactive:
 		return
-	toggle_sfx.pitch_scale = rand_range(0.9, 1.1)
-	toggle_sfx.play()
+	
+	if body.is_in_group("player"):
+		toggle_sfx.pitch_scale = rand_range(0.9, 1.1)
+		toggle_sfx.play()
 	tilemap.set_cell(pos.x, pos.y, 4)
 
 
@@ -23,6 +25,7 @@ func _on_Area2D_body_exited(body):
 	if len(area.get_overlapping_bodies()) > 1 or inactive:
 		return
 	
-	toggle_sfx.pitch_scale = rand_range(0.9, 1.1)
-	toggle_sfx.play()
+	if body.is_in_group("player"):
+		toggle_sfx.pitch_scale = rand_range(0.9, 1.1)
+		toggle_sfx.play()
 	tilemap.set_cell(pos.x, pos.y, 5)
