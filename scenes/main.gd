@@ -64,6 +64,11 @@ func _physics_process(delta) -> void:
 func _on_normal_enemy_killed() -> void:
 	enemy_death_sfx.pitch_scale = rand_range(0.9, 1.1)
 	enemy_death_sfx.play()
+	
+	if hud.num_kills + 1 == 15:
+		Global.health = max_health
+		hud.hearts.update_hearts()
+		$Player.health_refill_sfx.play()
 
 
 func _on_boss_killed() -> void:
