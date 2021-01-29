@@ -8,13 +8,14 @@ onready var grid_container: GridContainer = $MarginContainer/HBoxContainer/VBoxC
 onready var hearts : HBoxContainer = $MarginContainer/HBoxContainer/VBoxContainer/Hearts
 onready var info_box: ColorRect = $MarginContainer/HBoxContainer/InfoBox
 
-var titles = ["Speed", "Dash", "Rapid Fire", "No Reload", "Flaming Bullets", "Immobolizing Bullets", "Massive Bullets", "Ghost Bullets"]
+var titles = ["Speed", "Dash", "Rapid Fire", "No Reload", "Flaming Bullets", "Immobolizing Bullets", "Blackhole", "Massive Bullets", "Ghost Bullets"]
 var infos = ["Doubles your running speed. Excellent if you want to rush trough the dungeon, but beware, the controls get more slippery!",
 "Press 'Space' to dash. While you are dashing it gives you immunity. Perfect to escape hairy situations.",
 "Doubles the speed of your bullets. If you are good at aiming you can double your damage!",
 "Your ammo always stays the same, You will never have to worry that you can't shoot in hairy situations anymore.",
 "If you hit an enemy with a bullet, it will get damage every second for 5 seconds. Perfect if you fight more from the distance",
 "Press the Right Mouse Button to shoot an immobolizing bullet and stun an enemy for 2 seconds. But beware there's a cooldown of 5 seconds for using it.",
+"Press 'Shift to create a blackhole where your mouse position currently is at. It sucks all enemies in it's sorrounding into it, so you can shoot it them at a safe distance.",
 "Makes your bullets bigger. If you aren't this good at aiming this is the upgrade for you!",
 "Bullet's fly through enemies, hurting them and the ones behind. But beware, the bullet's will vanish only after one second!"]
 
